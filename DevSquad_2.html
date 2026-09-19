@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevSquad - HTML Text Formatting Tags</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at 10% 20%, #e8e8fb 0%, #dbe4fd 40%, #f1e6ff 75%, #d8e2fd 100%);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      color: #1e1b4b;
+    }
+
+    .font-code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* macOS Window Shadow & Rounded Styles */
+    .mac-dark-editor {
+      background-color: #1c202b;
+      border-radius: 16px;
+      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .mac-browser-window {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      overflow: hidden;
+    }
+
+    /* Code Editor Syntax Highlighting */
+    .syn-doc { color: #818cf8; font-weight: 600; }    /* Lavender for DOCTYPE */
+    .syn-tag { color: #f472b6; font-weight: 600; }    /* Pink for HTML tags */
+    .syn-attr { color: #38bdf8; font-weight: 500; }   /* Sky blue for attributes */
+    .syn-val { color: #fde047; }    /* Yellow for attribute values */
+    .syn-text { color: #ffffff; }   /* White for text content */
+    .syn-indent { padding-left: 1.25rem; }
+
+    /* Glassmorphism Cards & Soft Colors */
+    .card-purple {
+      background: rgba(235, 226, 255, 0.85);
+      border: 1px solid rgba(216, 180, 254, 0.8);
+    }
+    .badge-purple { background: #e9d5ff; color: #6b21a8; }
+
+    .card-blue {
+      background: rgba(220, 238, 255, 0.85);
+      border: 1px solid rgba(186, 230, 253, 0.8);
+    }
+    .badge-blue { background: #bae6fd; color: #0369a1; }
+
+    .card-green {
+      background: rgba(220, 252, 231, 0.85);
+      border: 1px solid rgba(187, 247, 208, 0.8);
+    }
+    .badge-green { background: #bbf7d0; color: #15803d; }
+
+    .card-yellow {
+      background: rgba(254, 243, 199, 0.85);
+      border: 1px solid rgba(253, 230, 138, 0.8);
+    }
+    .badge-yellow { background: #fde68a; color: #92400e; }
+
+    .card-pink {
+      background: rgba(252, 231, 243, 0.85);
+      border: 1px solid rgba(251, 207, 232, 0.8);
+    }
+    .badge-pink { background: #fbcfe8; color: #9d174d; }
+
+    .glass-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen p-4 sm:p-6 md:p-8">
+
+  <header class="w-full max-w-6xl mx-auto mb-6 text-center select-none">
+    <div class="inline-flex items-center gap-3 mb-2">
+      <span class="h-0.5 w-8 sm:w-12 bg-indigo-300 rounded-full"></span>
+      <h1 id="presentation-title" class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        Text Formatting Tags
+      </h1>
+      <span class="h-0.5 w-8 sm:w-12 bg-indigo-300 rounded-full"></span>
+    </div>
+    <p id="presentation-subtitle" class="text-xs sm:text-sm font-semibold text-indigo-700/80 uppercase tracking-widest">
+      Presentation • Slide 1 of 2
+    </p>
+  </header>
+
+  <main class="w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center my-auto">
+
+    <!-- ================= SLIDE 1: Bold <b>, Italic <i>, Underline <u> ================= -->
+    <section id="slide-1" class="slide-view flex flex-col gap-6">
+      
+      <!-- Top Row: Code Editor + Browser Preview -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Left Column: Dark macOS Editor -->
+        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
+            <div class="w-12"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
+            <!-- Line Numbers -->
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11
+            </div>
+            <!-- Full Document HTML Code -->
+            <div class="space-y-0.5">
+              <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
+              <div><span class="syn-tag">&lt;html&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Text Formatting</span><span class="syn-tag">&lt;/title&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;p&gt;</span><span class="syn-text">This is </span><span class="syn-tag">&lt;b&gt;</span><span class="syn-text">bold</span><span class="syn-tag">&lt;/b&gt;</span><span class="syn-text"> text.</span><span class="syn-tag">&lt;/p&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;p&gt;</span><span class="syn-text">This is </span><span class="syn-tag">&lt;i&gt;</span><span class="syn-text">italic</span><span class="syn-tag">&lt;/i&gt;</span><span class="syn-text"> text.</span><span class="syn-tag">&lt;/p&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;p&gt;</span><span class="syn-text">This is </span><span class="syn-tag">&lt;u&gt;</span><span class="syn-text">underlined</span><span class="syn-tag">&lt;/u&gt;</span><span class="syn-text"> text.</span><span class="syn-tag">&lt;/p&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
+              <div><span class="syn-tag">&lt;/html&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Light macOS Browser Window -->
+        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <!-- Browser Render Output -->
+          <div class="p-6 bg-white flex-1 overflow-y-auto space-y-4 text-slate-900 flex flex-col ">
+            <p class="text-base sm:text-lg text-slate-800">
+              This is <b>bold</b> text.
+            </p>
+            <p class="text-base sm:text-lg text-slate-800">
+              This is <i>italic</i> text.
+            </p>
+            <p class="text-base sm:text-lg text-slate-800">
+              This is <u>underlined</u> text.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: 3 Pastel Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Card 1 -->
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
+              &lt;b&gt; Bold Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Makes text bold to draw visual attention without adding extra importance. It is a <strong>paired tag</strong> requiring a closing <code class="font-bold text-purple-900">&lt;/b&gt;</code> tag.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
+              &lt;i&gt; Italic Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Displays text in an italicized style. Used for technical terms, foreign phrases, thoughts, or titles. Paired tag requiring <code class="font-bold text-blue-900">&lt;/i&gt;</code>.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
+              &lt;u&gt; Underline Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Renders text with a line beneath it. Useful for highlighting key words or annotations. Paired tag requiring <code class="font-bold text-emerald-900">&lt;/u&gt;</code>.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= SLIDE 2: Horizontal Rule <hr> ================= -->
+    <section id="slide-2" class="slide-view hidden flex flex-col gap-6">
+      
+      <!-- Top Row: Code Editor + Browser Preview -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Left Column: Dark macOS Editor -->
+        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
+            <div class="w-12"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
+            <!-- Line Numbers -->
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13
+            </div>
+            <!-- Full Document HTML Code -->
+            <div class="space-y-0.5">
+              <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
+              <div><span class="syn-tag">&lt;html&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Horizontal Rule</span><span class="syn-tag">&lt;/title&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;h1&gt;</span><span class="syn-text">Chapter 1</span><span class="syn-tag">&lt;/h1&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;p&gt;</span><span class="syn-text">This is the first chapter content.</span><span class="syn-tag">&lt;/p&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;hr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;h1&gt;</span><span class="syn-text">Chapter 2</span><span class="syn-tag">&lt;/h1&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;p&gt;</span><span class="syn-text">This is the second chapter content.</span><span class="syn-tag">&lt;/p&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
+              <div><span class="syn-tag">&lt;/html&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Light macOS Browser Window -->
+        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <!-- Browser Render Output -->
+          <div class="p-6 bg-white flex-1 overflow-y-auto space-y-3 text-slate-900 flex flex-col ">
+            <h1 class="text-2xl font-bold text-slate-900">Chapter 1</h1>
+            <p class="text-sm text-slate-600">This is the first chapter content.</p>
+            <hr class="border-slate-300 my-2">
+            <h1 class="text-2xl font-bold text-slate-900">Chapter 2</h1>
+            <p class="text-sm text-slate-600">This is the second chapter content.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: 3 Pastel Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Card 1 -->
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
+              &lt;hr&gt; Horizontal Rule
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Creates a horizontal divider line. Used to represent a thematic break between paragraphs or topics.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card card-pink p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-pink">
+              Self-Closing / Empty Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Does <strong>NOT</strong> need a closing tag (unlike <code class="font-bold text-pink-900">&lt;b&gt;</code> or <code class="font-bold text-pink-900">&lt;i&gt;</code>). It is written as <code class="font-bold text-pink-900">&lt;hr&gt;</code> or <code class="font-bold text-pink-900">&lt;hr /&gt;</code>.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card card-yellow p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-yellow">
+              Separator
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Visually breaks up content to improve readability when transitioning between chapters, sections, topics or paragaraphs.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom Slide Navigation Controls -->
+  <footer class="w-full max-w-6xl mx-auto mt-6 flex items-center justify-between select-none">
+    <button id="btn-prev" onclick="prevSlide()" class="px-5 py-2.5 rounded-xl bg-white/80 hover:bg-white text-slate-800 font-semibold text-sm shadow-md hover:shadow-lg border border-white transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled>
+      <i class="fa-solid fa-chevron-left text-xs"></i>
+      <span>Previous</span>
+    </button>
+
+    <div class="flex items-center gap-2">
+      <span id="dot-1" class="w-3 h-3 rounded-full bg-indigo-600 transition-all"></span>
+      <span id="dot-2" class="w-3 h-3 rounded-full bg-slate-300 transition-all"></span>
+    </div>
+
+    <button id="btn-next" onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+      <span>Next</span>
+      <i class="fa-solid fa-chevron-right text-xs"></i>
+    </button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 2;
+
+    const titles = {
+      1: "— Text Formatting Tags <b>, <i>, <u> —",
+      2: "— Horizontal Rule Tag <hr> —"
+    };
+
+    function updateSlideUI() {
+      // Hide all slides
+      document.getElementById('slide-1').classList.add('hidden');
+      document.getElementById('slide-2').classList.add('hidden');
+
+      // Show active slide
+      document.getElementById(`slide-${currentSlide}`).classList.remove('hidden');
+
+      // Update header titles
+      document.getElementById('presentation-title').innerHTML = titles[currentSlide];
+      document.getElementById('presentation-subtitle').innerText = `Presentation • Slide ${currentSlide} of ${totalSlides}`;
+
+      // Update buttons and dots
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+
+      if (currentSlide === 1) {
+        btnPrev.disabled = true;
+        btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+        document.getElementById('dot-1').className = "w-3 h-3 rounded-full bg-indigo-600 transition-all";
+        document.getElementById('dot-2').className = "w-3 h-3 rounded-full bg-slate-300 transition-all";
+      } else {
+        btnPrev.disabled = false;
+        btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+
+      if (currentSlide === totalSlides) {
+        btnNext.disabled = true;
+        btnNext.classList.add('opacity-50', 'cursor-not-allowed');
+        document.getElementById('dot-1').className = "w-3 h-3 rounded-full bg-slate-300 transition-all";
+        document.getElementById('dot-2').className = "w-3 h-3 rounded-full bg-indigo-600 transition-all";
+      } else {
+        btnNext.disabled = false;
+        btnNext.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideUI();
+      }
+    }
+
+    // Keyboard Arrow Key Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>
