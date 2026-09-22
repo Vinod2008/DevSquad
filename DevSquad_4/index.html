@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Media Presentation</title>
+  <title>HTML Lists & Tables Presentation</title>
 
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,12 +76,6 @@
     }
     .badge-yellow { background: #fde68a; color: #92400e; }
 
-    .card-pink {
-      background: rgba(252, 231, 243, 0.85);
-      border: 1px solid rgba(251, 207, 232, 0.8);
-    }
-    .badge-pink { background: #fbcfe8; color: #9d174d; }
-
     .glass-card {
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -95,7 +89,7 @@
     <div class="inline-flex items-center gap-3 mb-2">
       <span class="h-0.5 w-8 sm:w-12 bg-indigo-300 rounded-full"></span>
       <h1 id="presentation-title" class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-        Image Tag &lt;img&gt;
+        Basic HTML Lists &lt;ul&gt; &amp; &lt;ol&gt;
       </h1>
       <span class="h-0.5 w-8 sm:w-12 bg-indigo-300 rounded-full"></span>
     </div>
@@ -106,301 +100,9 @@
 
   <main class="w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center my-auto">
 
-    <!-- ================= SLIDE 1: Image Tag ================= -->
+    <!-- ================= SLIDE 1: Basic Lists ================= -->
     <section id="slide-1" class="slide-view flex flex-col gap-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
-            <div class="w-12"></div>
-          </div>
-
-          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
-            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
-              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
-            </div>
-            <div class="space-y-0.5">
-              <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
-              <div><span class="syn-tag">&lt;html&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
-              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Image Tag Demo</span><span class="syn-tag">&lt;/title&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
-              <div class="syn-indent pl-8">
-                <span class="syn-tag">&lt;img</span> <span class="syn-attr">src</span>=<span class="syn-val">"https://picsum.photos/600/350"</span> <span class="syn-attr">alt</span>=<span class="syn-val">"Sample Image"</span><span class="syn-tag">&gt;</span>
-              </div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
-              <div><span class="syn-tag">&lt;/html&gt;</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
-              <i class="fa-solid fa-globe text-slate-400"></i>
-              <span>Output Terminal</span>
-            </div>
-          </div>
-
-          <div class="p-6 bg-white flex-1 overflow-y-auto flex flex-col items-center justify-center">
-            <img src="https://picsum.photos/600/350" 
-                 alt="Sample Image" 
-                 class="w-full max-w-md h-auto rounded-xl shadow-md border border-slate-200 object-cover"
-                 onerror="this.src='https://placehold.co/600x350/e2e8f0/475569?text=Sample+Image';">
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
-              &lt;img&gt; Image Tag
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Used to embed images on web pages. It is a self-closing tag that does not require a closing tag.
-          </p>
-        </div>
-
-        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
-              src="..." Attribute
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Specifies the source path or URL of the image file to display on screen.
-          </p>
-        </div>
-
-        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
-              alt="..." Attribute
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Provides alternate descriptive text for accessibility or if the image fails to load.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 2: Video Tag ================= -->
-    <section id="slide-2" class="slide-view hidden flex flex-col gap-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
-            <div class="w-12"></div>
-          </div>
-
-          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
-            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
-              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11
-            </div>
-            <div class="space-y-0.5">
-              <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
-              <div><span class="syn-tag">&lt;html&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
-              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Video Tag Demo</span><span class="syn-tag">&lt;/title&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
-              <div class="syn-indent pl-8">
-                <span class="syn-tag">&lt;iframe</span> <span class="syn-attr">src</span>=<span class="syn-val">"https://www.youtube.com/embed/q3AuP01daL4"</span>
-              </div>
-              <div class="syn-indent pl-12">
-                <span class="syn-attr">width</span>=<span class="syn-val">"100%"</span> <span class="syn-attr">height</span>=<span class="syn-val">"250"</span> <span class="syn-attr">allowfullscreen</span><span class="syn-tag">&gt;&lt;/iframe&gt;</span>
-              </div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
-              <div><span class="syn-tag">&lt;/html&gt;</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
-              <i class="fa-solid fa-globe text-slate-400"></i>
-              <span>Output Terminal</span>
-            </div>
-          </div>
-
-          <div class="p-4 bg-white flex-1 overflow-y-auto flex flex-col items-center justify-center">
-            <div class="w-full max-w-md aspect-video rounded-xl overflow-hidden shadow-lg border border-slate-200 bg-black">
-              <iframe 
-                src="https://www.youtube.com/embed/q3AuP01daL4" 
-                title="YouTube Video Player"
-                class="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
-              Video Embedding
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Displays real video content embedded directly into your webpage layout using standard video players.
-          </p>
-        </div>
-
-        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
-              allowfullscreen
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Permits users to expand the video player into full-screen mode on their monitor or screen.
-          </p>
-        </div>
-
-        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
-              Real Playback
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Supports interactive playback controls including play, pause, seek, and volume adjustments.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 3: Audio Tag ================= -->
-    <section id="slide-3" class="slide-view hidden flex flex-col gap-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
-            <div class="w-12"></div>
-          </div>
-
-          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
-            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
-              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
-            </div>
-            <div class="space-y-0.5">
-              <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
-              <div><span class="syn-tag">&lt;html&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
-              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Audio Tag Demo</span><span class="syn-tag">&lt;/title&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
-              <div class="syn-indent pl-8">
-                <span class="syn-tag">&lt;audio</span> <span class="syn-attr">controls</span> <span class="syn-attr">src</span>=<span class="syn-val">"beep.ogg"</span><span class="syn-tag">&gt;&lt;/audio&gt;</span>
-              </div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
-              <div><span class="syn-tag">&lt;/html&gt;</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
-          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
-            </div>
-            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
-              <i class="fa-solid fa-globe text-slate-400"></i>
-              <span>Output Terminal</span>
-            </div>
-          </div>
-
-          <div class="p-6 bg-white flex-1 overflow-y-auto flex flex-col items-center justify-center gap-4">
-            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center gap-3 w-full max-w-sm shadow-sm">
-              <div class="flex items-center gap-2 text-indigo-600 font-semibold text-sm">
-                <i class="fa-solid fa-volume-high"></i>
-                <span>Sample Beep Audio</span>
-              </div>
-              <audio controls class="w-full">
-                <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
-                Your browser does not support the audio tag.
-              </audio>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
-              &lt;audio&gt; Tag
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Used to play sound files or audio streams on a webpage.
-          </p>
-        </div>
-
-        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
-              controls Attribute
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Displays standard browser controls like play, pause, and volume controls.
-          </p>
-        </div>
-
-        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
-              src="..." Attribute
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            Specifies the URL location of the audio file to load and play.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 4: Iframe Tag ================= -->
-    <section id="slide-4" class="slide-view hidden flex flex-col gap-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        
-        <!-- Left Column: Dark macOS Editor -->
         <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
           <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
             <div class="flex items-center gap-2">
@@ -419,23 +121,22 @@
             <div class="space-y-0.5 whitespace-nowrap">
               <div><span class="syn-doc">&lt;!DOCTYPE html&gt;</span></div>
               <div><span class="syn-tag">&lt;html&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;head&gt;</span></div>
-              <div class="syn-indent pl-8"><span class="syn-tag">&lt;title&gt;</span><span class="syn-text">Iframe Demo</span><span class="syn-tag">&lt;/title&gt;</span></div>
-              <div class="syn-indent"><span class="syn-tag">&lt;/head&gt;</span></div>
               <div class="syn-indent"><span class="syn-tag">&lt;body&gt;</span></div>
-              <div class="syn-indent pl-8"><span class="syn-tag">&lt;iframe</span></div>
-              <div class="syn-indent pl-12"><span class="syn-attr">width</span>=<span class="syn-val">"560"</span> <span class="syn-attr">height</span>=<span class="syn-val">"315"</span></div>
-              <div class="syn-indent pl-12"><span class="syn-attr">src</span>=<span class="syn-val">"https://www.youtube.com/embed/BdgwH614LM0?si=7EyJ4N0sKbRPx49x"</span></div>
-              <div class="syn-indent pl-12"><span class="syn-attr">title</span>=<span class="syn-val">"YouTube video player"</span> <span class="syn-attr">frameborder</span>=<span class="syn-val">"0"</span></div>
-              <div class="syn-indent pl-12"><span class="syn-attr">allow</span>=<span class="syn-val">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"</span></div>
-              <div class="syn-indent pl-12"><span class="syn-attr">referrerpolicy</span>=<span class="syn-val">"strict-origin-when-cross-origin"</span> <span class="syn-attr">allowfullscreen</span><span class="syn-tag">&gt;&lt;/iframe&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;h3&gt;</span><span class="syn-text">Unordered List</span><span class="syn-tag">&lt;/h3&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;ul&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">HTML5</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">CSS3</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;/ul&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;h3&gt;</span><span class="syn-text">Ordered List</span><span class="syn-tag">&lt;/h3&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;ol&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">Frontend</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">Backend</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;/ol&gt;</span></div>
               <div class="syn-indent"><span class="syn-tag">&lt;/body&gt;</span></div>
-              <div><span class="syn-tag">&lt;/html&gt;</span></div>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Light macOS Browser Window -->
         <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
           <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
             <div class="flex items-center gap-2">
@@ -449,34 +150,365 @@
             </div>
           </div>
 
-          <div class="p-4 bg-white flex-1 overflow-y-auto flex flex-col items-center justify-center">
-            <div class="w-full max-w-md aspect-video rounded-xl overflow-hidden shadow-md border border-slate-200 bg-black">
-              <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/BdgwH614LM0?si=7EyJ4N0sKbRPx49x" 
-                title="YouTube video player" 
-                class="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-              </iframe>
+          <div class="p-6 bg-white flex-1 overflow-y-auto flex flex-col justify-center items-start pl-12">
+            <h3 class="font-bold text-slate-800 mb-2">Unordered List</h3>
+            <ul class="list-disc pl-5 mb-6 text-slate-700 font-medium">
+              <li>HTML5</li>
+              <li>CSS3</li>
+            </ul>
+
+            <h3 class="font-bold text-slate-800 mb-2">Ordered List</h3>
+            <ol class="list-decimal pl-5 text-slate-700 font-medium">
+              <li>Frontend</li>
+              <li>Backend</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
+              &lt;ul&gt; Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Creates bulleted (unordered) items where sequence order doesn't matter.
+          </p>
+        </div>
+
+        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
+              &lt;ol&gt; Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Creates numbered (ordered) items used when step sequence or priority matters.
+          </p>
+        </div>
+
+        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
+              &lt;li&gt; Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Represents individual List Items inside both &lt;ul&gt; and &lt;ol&gt; parents.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 2: Nested Lists ================= -->
+    <section id="slide-2" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
+            <div class="w-12"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12
+            </div>
+            <div class="space-y-0.5 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;ul&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">Web Development</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;ol&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">HTML Basics</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">CSS Styling</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;/ol&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">Database</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;ul&gt;</span></div>
+              <div class="syn-indent pl-12"><span class="syn-tag">&lt;li&gt;</span><span class="syn-text">SQL</span><span class="syn-tag">&lt;/li&gt;</span></div>
+              
+              <div class="syn-indent"><span class="syn-tag">&lt;/ul&gt;</span></div>
+              <div><span class="syn-tag">&lt;/ul&gt;</span></div>
             </div>
           </div>
         </div>
 
+        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-white flex-1 overflow-y-auto flex flex-col justify-center items-start pl-12">
+            <ol class="list-disc pl-5 text-slate-800 font-semibold space-y-2">
+              <li>
+                Web Development
+              </li>
+                <ul class="list-decimal pl-6 mt-1 font-normal text-slate-600">
+                  <li>HTML Basics</li>
+                  <li>CSS Styling</li>
+                </ul>
+              
+              <li>
+                Database
+              </li>
+                <ul class="list-circle pl-6 mt-1 font-normal text-slate-600">
+                  <li>SQL</li>
+                </ul>
+            </ol>
+          </div>
+        </div>
       </div>
 
-      <!-- Bottom Row: Hindi Explanation Card -->
-      <div class="grid grid-cols-1 gap-4">
-        <div class="glass-card card-purple p-5 rounded-2xl flex flex-col gap-2 shadow-sm border border-purple-200">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
           <div>
             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
-              &lt;iframe&gt; Explanation (Hindi)
+              Definition
             </span>
           </div>
-          <p class="text-sm sm:text-base text-purple-950 font-semibold leading-relaxed">
-            "iframe basically ek alag display hota hai, like map, youtube video or any other usko tumhe apne website pe dikhana hota hai to iframe use karte hai"
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            A list within another list is called a nested list. It can be used to represent hierarchical data or subcategories.
+          </p>
+        </div>
+
+        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
+              Mixed Types
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Mix ordered &lt;ol&gt; and unordered &lt;ul&gt; lists freely depending on sub-item context.
+          </p>
+        </div>
+
+        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
+              Navigation Trees
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Essential foundation for dropdown menus, navigation bars, and multi-level sitemaps.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 3: Table Structure ================= -->
+    <section id="slide-3" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
+            <div class="w-12"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12
+            </div>
+            <div class="space-y-0.5 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;table&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;tr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;th&gt;</span><span class="syn-text">Name</span><span class="syn-tag">&lt;/th&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;th&gt;</span><span class="syn-text">Role</span><span class="syn-tag">&lt;/th&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/tr&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;tr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;td&gt;</span><span class="syn-text">Rahul</span><span class="syn-tag">&lt;/td&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;td&gt;</span><span class="syn-text">Developer</span><span class="syn-tag">&lt;/td&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/tr&gt;</span></div>
+              <div><span class="syn-tag">&lt;/table&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-white flex-1 overflow-y-auto flex items-center justify-center">
+            <table class="w-full max-w-xs border-collapse border border-slate-300 shadow-sm rounded-lg overflow-hidden text-sm">
+              <thead>
+                <tr class="bg-indigo-100 border-b border-slate-300">
+                  <th class="border border-slate-300 p-2.5 text-left text-indigo-900 font-bold">Name</th>
+                  <th class="border border-slate-300 p-2.5 text-left text-indigo-900 font-bold">Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="hover:bg-slate-50">
+                  <td class="border border-slate-300 p-2.5 text-slate-700">Rahul</td>
+                  <td class="border border-slate-300 p-2.5 text-slate-700">Developer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
+              &lt;table&gt; Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Main wrapper element used to declare a structured tabular dataset.
+          </p>
+        </div>
+
+        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
+              &lt;tr&gt; Tag
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Table Row - creates a horizontal container for data cells and headers.
+          </p>
+        </div>
+
+        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
+              &lt;th&gt; &amp; &lt;td&gt; Tags
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            &lt;th&gt; holds bold centered header cells; &lt;td&gt; holds standard table data cells.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 4: Table Attributes ================= -->
+    <section id="slide-4" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <div class="mac-dark-editor flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-[#13161f] flex items-center justify-between border-b border-white/5 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-xs font-code text-slate-400 font-medium">Input Terminal</span>
+            <div class="w-12"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11
+            </div>
+            <div class="space-y-0.5 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;table</span> <span class="syn-attr">border</span>=<span class="syn-val">"1"</span><span class="syn-tag">&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;tr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;th</span> <span class="syn-attr">colspan</span>=<span class="syn-val">"2"</span><span class="syn-tag">&gt;</span><span class="syn-text">Header Merged</span><span class="syn-tag">&lt;/th&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/tr&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;tr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;td</span> <span class="syn-attr">rowspan</span>=<span class="syn-val">"2"</span><span class="syn-tag">&gt;</span><span class="syn-text">Span 2 Rows</span><span class="syn-tag">&lt;/td&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;td&gt;</span><span class="syn-text">Cell 1</span><span class="syn-tag">&lt;/td&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/tr&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;tr&gt;</span></div>
+              <div class="syn-indent pl-8"><span class="syn-tag">&lt;td&gt;</span><span class="syn-text">Cell 2</span><span class="syn-tag">&lt;/td&gt;</span></div>
+              <div class="syn-indent"><span class="syn-tag">&lt;/tr&gt;</span></div>
+              <div><span class="syn-tag">&lt;/table&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mac-browser-window flex flex-col h-full min-h-[360px]">
+          <div class="px-4 py-3 bg-slate-100 flex items-center gap-3 border-b border-slate-200 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <div class="flex-1 bg-white px-3 py-1 rounded-md border border-slate-200 text-xs text-slate-500 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-white flex-1 overflow-y-auto flex items-center justify-center">
+            <table class="border-2 border-slate-800 border-collapse text-sm text-center shadow-sm">
+              <thead>
+                <tr>
+                  <th colspan="2" class="border border-slate-800 p-2.5 bg-indigo-100 text-indigo-900 font-bold">Header Merged</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2" class="border border-slate-800 p-3 bg-emerald-50 text-emerald-900 font-semibold">Span 2 Rows</td>
+                  <td class="border border-slate-800 p-2.5 text-slate-700">Cell 1</td>
+                </tr>
+                <tr>
+                  <td class="border border-slate-800 p-2.5 text-slate-700">Cell 2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attributes Overview Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card card-purple p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-purple">
+              colspan
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Merges multiple columns horizontally into a single table cell.
+          </p>
+        </div>
+
+        <div class="glass-card card-blue p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-blue">
+              rowspan
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Merges multiple rows vertically across consecutive table rows.
+          </p>
+        </div>
+
+        <div class="glass-card card-green p-4 rounded-2xl flex flex-col gap-2 shadow-sm">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code badge-green">
+              border
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            Defines the border thickness around the table and its individual cells.
           </p>
         </div>
       </div>
@@ -509,10 +541,10 @@
     const totalSlides = 4;
 
     const titles = {
-      1: "Image Tag &lt;img&gt;",
-      2: "Video Tag &lt;video&gt;",
-      3: "Audio Tag &lt;audio&gt;",
-      4: "Iframe Tag &lt;iframe&gt;"
+      1: "Basic HTML Lists &lt;ul&gt; &amp; &lt;ol&gt;",
+      2: "Nested HTML Lists",
+      3: "HTML Table Structure &lt;table&gt;",
+      4: "Table Attributes (colspan &amp; rowspan)"
     };
 
     function updateSlideUI() {
