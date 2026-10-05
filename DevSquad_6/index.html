@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Input Types Interactive Masterclass</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: #090d16;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f1f5f9;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .font-code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Glowing Cyber Accents */
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.4);
+    }
+    .glow-magenta {
+      box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.4);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Glassmorphism Panels */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s ease-in-out;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Code Highlighting Syntax */
+    .syn-tag { color: #f472b6; font-weight: 600; }     /* Pink */
+    .syn-attr { color: #38bdf8; font-weight: 500; }    /* Sky Blue */
+    .syn-val { color: #fde047; }     /* Yellow */
+    .syn-text { color: #f8fafc; }    /* Off-white */
+    .syn-comment { color: #64748b; italic: true; } /* Slate Comment */
+
+    /* Custom Table Glow */
+    .table-row-hover {
+      transition: all 0.2s ease;
+    }
+    .table-row-hover:hover {
+      background: rgba(56, 189, 248, 0.12);
+      box-shadow: inset 4px 0 0 #38bdf8;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen p-3 sm:p-6 md:p-8 relative">
+
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <header class="w-full max-w-6xl mx-auto mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 z-10 select-none">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/30">
+        <i class="fa-solid fa-code text-lg"></i>
+      </div>
+      <div>
+        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">
+          HTML Input Elements
+        </h1>
+        <p class="text-xs text-slate-400 font-medium">Interactive Beginner Masterclass</p>
+      </div>
+    </div>
+
+    <!-- Slide Jump Selector & Indicator -->
+    <div class="flex items-center gap-3 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800 backdrop-blur-md">
+      <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider font-code" id="slide-badge">SLIDE 1 / 9</span>
+      <div class="h-4 w-px bg-slate-800"></div>
+      <select id="slide-select" onchange="goToSlide(parseInt(this.value))" class="bg-transparent text-xs font-semibold text-slate-200 focus:outline-none cursor-pointer">
+        <option value="1" class="bg-slate-900">1. Overview Table</option>
+        <option value="2" class="bg-slate-900">2. &lt;input type="text"&gt;</option>
+        <option value="3" class="bg-slate-900">3. &lt;input type="radio"&gt;</option>
+        <option value="4" class="bg-slate-900">4. &lt;input type="checkbox"&gt;</option>
+        <option value="5" class="bg-slate-900">5. &lt;input type="submit"&gt;</option>
+        <option value="6" class="bg-slate-900">6. &lt;input type="password"&gt;</option>
+        <option value="7" class="bg-slate-900">7. &lt;input type="reset"&gt;</option>
+        <option value="8" class="bg-slate-900">8. &lt;input type="button"&gt;</option>
+        <option value="9" class="bg-slate-900">9. Final Reference Table</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center my-auto z-10">
+
+    <!-- ================= SLIDE 1: Introduction Table Overview ================= -->
+    <section id="slide-1" class="slide-view flex flex-col gap-6">
+      <div class="text-center space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code bg-cyan-950 text-cyan-300 border border-cyan-800/50">
+          <i class="fa-solid fa-list-check mr-1.5"></i> HTML Form Input Elements 
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Types of HTML Input Elements</h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+          Click on any input element row below to jump directly to its lesson slide!
+        </p>
+      </div>
+
+      <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900/90 text-cyan-400 font-code text-xs uppercase border-b border-slate-800">
+                <th class="p-4 sm:p-5 font-bold">Type of Element</th>
+                <th class="p-4 sm:p-5 font-bold">Purpose</th>
+                <th class="p-4 sm:p-5 font-bold text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-xs sm:text-sm text-slate-300">
+              <tr onclick="goToSlide(2)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-cyan-300 font-semibold group-hover:text-cyan-200">&lt;Input type = "text"&gt;</td>
+                <td class="p-4 text-slate-300">Creates a one line textbox</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-cyan-400 text-xs font-code group-hover:bg-cyan-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(3)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-pink-400 font-semibold group-hover:text-pink-300">&lt;Input type = "radio"&gt;</td>
+                <td class="p-4 text-slate-300">Creates a radio button. The radio button allows one option selection against multiple choices.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-pink-400 text-xs font-code group-hover:bg-pink-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(4)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-emerald-400 font-semibold group-hover:text-emerald-300">&lt;Input type = "checkbox"&gt;</td>
+                <td class="p-4 text-slate-300">Creates a checkbox. It allows more than one selection against multiple choices.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-emerald-400 text-xs font-code group-hover:bg-emerald-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(5)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-indigo-400 font-semibold group-hover:text-indigo-300">&lt;Input type = "submit"&gt;</td>
+                <td class="p-4 text-slate-300">Displays a button for submitting the form data to a server.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-indigo-400 text-xs font-code group-hover:bg-indigo-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(6)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-amber-400 font-semibold group-hover:text-amber-300">&lt;Input type = "password"&gt;</td>
+                <td class="p-4 text-slate-300">The password input type is used to create text contents in the form of '*' asterik or '•' disc.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-amber-400 text-xs font-code group-hover:bg-amber-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(7)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-rose-400 font-semibold group-hover:text-rose-300">&lt;Input type = "reset"&gt;</td>
+                <td class="p-4 text-slate-300">The reset control clears the text content entered in the form.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-rose-400 text-xs font-code group-hover:bg-rose-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+              <tr onclick="goToSlide(8)" class="table-row-hover cursor-pointer group">
+                <td class="p-4 font-code text-purple-400 font-semibold group-hover:text-purple-300">&lt;Input type = "button"&gt;</td>
+                <td class="p-4 text-slate-300">It displays push button which activates on events.</td>
+                <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-800 text-purple-400 text-xs font-code group-hover:bg-purple-500 group-hover:text-slate-950 transition">Try <i class="fa-solid fa-arrow-right ml-1"></i></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 2: <input type="text"> ================= -->
+    <section id="slide-2" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal (Code Editor) -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+            
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s2">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Name: </span><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"text"</span> <span class="syn-attr">placeholder</span>=<span class="syn-val">"Enter your name"</span><span class="syn-tag">&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"submit"</span> <span class="syn-attr">value</span>=<span class="syn-val">"Submit"</span><span class="syn-tag">&gt;</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal (Live Preview) -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-cyan-400 font-code flex justify-center items-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal </span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col ">
+            <!-- Simulated Native Browser Form Output -->
+              <form onsubmit="event.preventDefault(); showToast('Text form submitted!');" class="space-y-4">
+                <div class="text-sm font-medium text-slate-200">
+                  Name: 
+                  <input type="text" placeholder="Enter your name" class="mt-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400">
+                </div>
+                <input type="submit" value="Submit" class=" py-2 px-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg cursor-pointer transition">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-cyan-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-lightbulb"></i> Purpose of &lt;input type="text"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Creates a single-line textbox where users can type standard text like names, search queries, or titles. 
+          The <code>placeholder</code> attribute provides a hint, for what has to be entered in box.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 3: <input type="radio"> ================= -->
+    <section id="slide-3" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s3">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Gender:</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"radio"</span> <span class="syn-attr">name</span>=<span class="syn-val">"g"</span><span class="syn-tag">&gt;</span><span class="syn-text"> Male</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"radio"</span> <span class="syn-attr">name</span>=<span class="syn-val">"g"</span><span class="syn-tag">&gt;</span><span class="syn-text"> Female</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-pink-400 font-code flex justify-center items-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal </span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col ">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-pink-500/30 shadow-xl space-y-4">
+              <form class="space-y-3">
+                <div class="text-sm font-medium text-slate-200">Gender:</div>
+                <div class="flex items-center gap-6">
+                  <label class="flex items-center gap-2 text-sm text-slate-200 cursor-pointer">
+                    <input type="radio" name="g" class="w-4 h-4 text-pink-500 focus:ring-pink-500 bg-slate-800 border-slate-700"> Male
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-slate-200 cursor-pointer">
+                    <input type="radio" name="g" class="w-4 h-4 text-pink-500 focus:ring-pink-500 bg-slate-800 border-slate-700"> Female
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-pink-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-circle-dot"></i> Purpose of &lt;input type="radio"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Creates a radio button. It allows selecting <strong>only one option</strong> out of multiple choices.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 4: <input type="checkbox"> ================= -->
+    <section id="slide-4" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s4">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Hobbies:</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"checkbox"</span><span class="syn-tag">&gt;</span><span class="syn-text"> Coding</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"checkbox"</span><span class="syn-tag">&gt;</span><span class="syn-text"> Gaming</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-emerald-400 font-code flex justify-center items-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col ">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-emerald-500/30 shadow-xl space-y-4">
+              <form class="space-y-3">
+                <div class="text-sm font-medium text-slate-200">Hobbies:</div>
+                <div class="flex items-center gap-6">
+                  <label class="flex items-center gap-2 text-sm text-slate-200 cursor-pointer">
+                    <input type="checkbox" checked class="w-4 h-4 text-emerald-500 rounded focus:ring-emerald-500 bg-slate-800 border-slate-700"> Coding
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-slate-200 cursor-pointer">
+                    <input type="checkbox" class="w-4 h-4 text-emerald-500 rounded focus:ring-emerald-500 bg-slate-800 border-slate-700"> Gaming
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-emerald-400 font-bold text-sm font-code">
+          <i class="fa-square-check fa-regular"></i> Purpose of &lt;input type="checkbox"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Creates a checkbox element. Unlike radio buttons, checkboxes allow users to select <strong>more than one option</strong> or none at all!
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 5: <input type="submit"> ================= -->
+    <section id="slide-5" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex  justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s5">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Email: </span><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"text"</span><span class="syn-tag">&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"submit"</span> <span class="syn-attr">value</span>=<span class="syn-val">"Send Data"</span><span class="syn-tag">&gt;</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex  gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-indigo-400 font-code flex justify-center items-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col ">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-indigo-500/30 shadow-xl space-y-4">
+              
+              <form onsubmit="event.preventDefault(); showToast('Form submitted to server successfully!');" class="space-y-4">
+                <div class="text-sm font-medium text-slate-200">
+                  Email: 
+                  <input type="text" placeholder="jeet@example.com" class="mt-1 w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-400">
+                </div>
+                <input type="submit" value="Send Data" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm rounded-lg cursor-pointer transition shadow-lg shadow-indigo-600/30">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-indigo-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-paper-plane"></i> Purpose of &lt;input type="submit"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Displays a submission button. Clicking this button sends all data filled in the form to a processing server. The <code>value="..."</code> attribute sets the button text!
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 6: <input type="password"> ================= -->
+    <section id="slide-6" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+            
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s6">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Password: </span><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"password"</span><span class="syn-tag">&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"submit"</span> <span class="syn-attr">value</span>=<span class="syn-val">"Login"</span><span class="syn-tag">&gt;</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-amber-400 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal</span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col ">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-amber-500/30 shadow-xl space-y-4">
+            
+              <form onsubmit="event.preventDefault(); showToast('Login Submitted!');" class="space-y-4">
+                <div class="text-sm font-medium text-slate-200">
+                  Password: 
+                  <input type="password" placeholder="••••••••" class="mt-1 w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                </div>
+                <input type="submit" value="Login" class="w-full py-2 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg cursor-pointer transition">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-amber-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-key"></i> Purpose of &lt;input type="password"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          The password input type masks characters as asterisks (*) or bullet discs (•) to protect sensitive text from shoulder surfing!
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 7: <input type="reset"> ================= -->
+    <section id="slide-7" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+            
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s7">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3<br>4<br>5
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-text">Feedback: </span><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"text"</span><span class="syn-tag">&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"reset"</span> <span class="syn-attr">value</span>=<span class="syn-val">"Clear Form"</span><span class="syn-tag">&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"submit"</span><span class="syn-tag">&gt;</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-rose-400 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal </span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto  ">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-rose-500/30 shadow-xl space-y-4">
+              <form class="space-y-4">
+                <div class="text-sm font-medium text-slate-200">
+                  Feedback: 
+                  <input type="text" class="mt-1 w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 focus:outline-none focus:border-rose-400">
+                </div>
+                <div class="flex gap-2">
+                  <input type="reset" value="Clear Form" class="flex-1 py-2 px-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-lg cursor-pointer transition">
+                  <input type="submit" value="Submit" class="flex-1 py-2 px-3 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs rounded-lg cursor-pointer transition">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-rose-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-rotate-left"></i> Purpose of &lt;input type="reset"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          The reset control immediately clears all inputs entered in the form, resetting every control back to its default state.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 8: <input type="button"> ================= -->
+    <section id="slide-8" class="slide-view hidden flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        
+        <!-- Input Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-950 flex items-center justify-between border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="text-xs font-code text-slate-400 ml-2">Input Terminal</span>
+            </div>
+            
+          </div>
+
+          <div class="p-5 font-code text-xs sm:text-sm leading-relaxed flex-1 flex gap-4 overflow-x-auto text-slate-200 bg-slate-950/80" id="code-s8">
+            <div class="text-slate-600 select-none text-right pr-3 border-r border-slate-800 font-mono">
+              1<br>2<br>3
+            </div>
+            <div class="space-y-1 whitespace-nowrap">
+              <div><span class="syn-tag">&lt;form&gt;</span></div>
+              <div class="pl-4"><span class="syn-tag">&lt;input</span> <span class="syn-attr">type</span>=<span class="syn-val">"button"</span> <span class="syn-attr">value</span>=<span class="syn-val">"Click Me!"</span> <span class="syn-attr">onclick</span>=<span class="syn-val">"alert('button activated')"</span><span class="syn-tag">&gt;</span></div>
+              <div><span class="syn-tag">&lt;/form&gt;</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal -->
+        <div class="glass-panel rounded-2xl flex flex-col h-full min-h-[360px] overflow-hidden border border-slate-800">
+          <div class="px-4 py-3 bg-slate-900/90 flex items-center gap-3 border-b border-slate-800 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="flex-1 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-purple-400 font-code flex items-center justify-center gap-2">
+              <i class="fa-solid fa-desktop"></i>
+              <span>Output Terminal </span>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-950/60 flex-1 overflow-y-auto flex flex-col">
+            <div class="w-full max-w-sm bg-slate-900/90 p-6 rounded-xl border border-purple-500/30 shadow-xl space-y-4">
+              
+              <form class="space-y-4">
+                <input type="button" value="Click Me!" onclick="showToast('Button Activated! 🎉')" class="w-full py-3 px-4 bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm rounded-lg cursor-pointer transition shadow-lg shadow-purple-600/30">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Concept Breakdown -->
+      <div class="glass-card p-5 rounded-2xl">
+        <div class="flex items-center gap-2 mb-2 text-purple-400 font-bold text-sm font-code">
+          <i class="fa-solid fa-toggle-on"></i> Purpose of &lt;input type="button"&gt;
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Displays a standalone push button. Unlike submit buttons, a generic button does not submit forms by default; instead, it triggers custom interactive actions on events (like JavaScript clicks)!.
+          basically, ye buttons ham apne khud ke purpose ke liye use kar sakte hai. 
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 9: Final Complete Reference Table ================= -->
+    <section id="slide-9" class="slide-view hidden flex flex-col gap-6">
+      <div class="text-center space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold font-code bg-emerald-950 text-emerald-300 border border-emerald-800/50">
+          <i class="fa-solid fa-check-double mr-1.5"></i> Final Summary Reference
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Complete Controls Reference Sheet</h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+          Here is your full reference table matching all HTML form controls covered in this presentation.
+        </p>
+      </div>
+
+      <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900/90 text-cyan-400 font-code text-xs uppercase border-b border-slate-800">
+                <th class="p-4 sm:p-5 font-bold w-1/3">Type of Control</th>
+                <th class="p-4 sm:p-5 font-bold">Purpose</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-xs sm:text-sm text-slate-300">
+              <tr>
+                <td class="p-4 font-code text-cyan-300 font-semibold">&lt;Input type = "text"&gt;</td>
+                <td class="p-4">Creates a one line textbox</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-pink-400 font-semibold">&lt;Input type = "radio"&gt;</td>
+                <td class="p-4">Creates a radio button. The radio button allows one option selection against multiple choices.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-emerald-400 font-semibold">&lt;Input type = "checkbox"&gt;</td>
+                <td class="p-4">Creates a checkbox. It allows more than one selection against multiple choices.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-indigo-400 font-semibold">&lt;Input type = "submit"&gt;</td>
+                <td class="p-4">Displays a button for submitting the form data to a server.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-amber-400 font-semibold">&lt;Input type = "password"&gt;</td>
+                <td class="p-4">The password input type is used to create text contents in the form of '*' asterik or '•' disc.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-rose-400 font-semibold">&lt;Input type = "reset"&gt;</td>
+                <td class="p-4">The reset control clears the text content entered in the form.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-code text-purple-400 font-semibold">&lt;Input type = "button"&gt;</td>
+                <td class="p-4">It displays push button which activates on events.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast-msg" class="fixed bottom-20 right-6 bg-cyan-500 text-slate-950 px-4 py-3 rounded-xl font-bold text-xs shadow-2xl transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none flex items-center gap-2 z-50">
+    <i class="fa-solid fa-circle-check text-base"></i>
+    <span id="toast-text">Message</span>
+  </div>
+
+  <footer class="w-full max-w-6xl mx-auto mt-6 flex items-center justify-between z-10 select-none">
+    <button id="btn-prev" onclick="prevSlide()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs sm:text-sm border border-slate-800 transition flex items-center gap-2 opacity-50 cursor-not-allowed" disabled>
+      <i class="fa-solid fa-chevron-left"></i>
+      <span>Previous</span>
+    </button>
+
+    <!-- Slide Indicators -->
+    <div class="hidden sm:flex items-center gap-1.5" id="slide-dots">
+      <!-- Dots populated via script -->
+    </div>
+
+    <button id="btn-next" onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-slate-950 font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+      <span>Next</span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 9;
+
+    // Render Navigation Dots dynamically
+    const dotsContainer = document.getElementById('slide-dots');
+    for (let i = 1; i <= totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.id = `dot-${i}`;
+      dot.onclick = () => goToSlide(i);
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 1 ? 'bg-cyan-400 w-6' : 'bg-slate-700'}`;
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlideUI() {
+      // Hide all slides
+      for (let i = 1; i <= totalSlides; i++) {
+        document.getElementById(`slide-${i}`).classList.add('hidden');
+      }
+
+      // Show current active slide
+      document.getElementById(`slide-${currentSlide}`).classList.remove('hidden');
+
+      // Update Select dropdown & badge indicator
+      document.getElementById('slide-select').value = currentSlide;
+      document.getElementById('slide-badge').innerText = `SLIDE ${currentSlide} / ${totalSlides}`;
+
+      // Update Buttons
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+
+      if (currentSlide === 1) {
+        btnPrev.disabled = true;
+        btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        btnPrev.disabled = false;
+        btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+
+      if (currentSlide === totalSlides) {
+        btnNext.disabled = true;
+        btnNext.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        btnNext.disabled = false;
+        btnNext.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+
+      // Update Dot Indicators
+      for (let i = 1; i <= totalSlides; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        if (i === currentSlide) {
+          dot.className = "w-6 h-2.5 rounded-full bg-cyan-400 transition-all cursor-pointer";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-700 transition-all cursor-pointer";
+        }
+      }
+    }
+
+    function goToSlide(slideNum) {
+      if (slideNum >= 1 && slideNum <= totalSlides) {
+        currentSlide = slideNum;
+        updateSlideUI();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideUI();
+      }
+    }
+
+    // Keyboard Arrow Key Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Copy Code Helper
+    function copyCode(containerId) {
+      const container = document.getElementById(containerId);
+      const textToCopy = container.innerText.replace(/^[0-9]+/gm, '').trim();
+      
+      const el = document.createElement('textarea');
+      el.value = textToCopy;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast("Code copied to clipboard!");
+    }
+
+    // Toast Notification Banner
+    function showToast(message) {
+      const toast = document.getElementById('toast-msg');
+      const text = document.getElementById('toast-text');
+      text.innerText = message;
+
+      toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
