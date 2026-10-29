@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HTML Trail – learn HTML by doing</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--g:#58cc02;--b:#1cb0f6;--p:#a560e8;--o:#ff9600;--r:#ff4b4b;--bg:#fbfdff;--grid:#fff;--ink:#3c3c3c;--mute:#777;--card:#fff;--line:#e5e5e5;--edge:#e5e5e5;--ac:#1cb0f6;--hi:#ffe27a;--ok:#58cc02;--bad:#ff4b4b;--code:#f6f8fc;--codeink:#2b3445;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font:16px/1.6 "Bricolage Grotesque",system-ui,sans-serif}
+code,textarea,.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:16px}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:2px solid var(--ink)}
+header.top .wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.logo{font-weight:800;font-size:22px;background:none;border:0;padding:0}
+.logo b{background:var(--hi);color:#1a2340;padding:0 6px;border-radius:4px}
+.meter{flex:1;min-width:140px}
+.bar{height:12px;border:2px solid var(--ink);border-radius:8px;background:var(--card);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ac);transition:width .4s}
+.stat{font-size:14px;color:var(--mute)}
+.btn{border:2px solid var(--ink);background:var(--card);border-radius:8px;padding:6px 12px;font-weight:700}
+.btn.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.btn:active{transform:translateY(1px)}
+h1{font-size:clamp(34px,6vw,60px);line-height:1.05;margin:24px 0 8px;font-weight:800;letter-spacing:-.02em}
+.lead{max-width:60ch;color:var(--mute);margin:0 0 28px}
+.trail{position:relative;margin:0;padding:0 0 0 34px;list-style:none}
+.trail:before{content:"";position:absolute;left:13px;top:10px;bottom:10px;border-left:3px dashed var(--ink);opacity:.4}
+.st{position:relative;margin:0 0 14px}
+.st:before{content:attr(data-n);position:absolute;left:-34px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--card);border:3px solid var(--ink);display:grid;place-items:center;font-size:12px;font-weight:800}
+.st.done:before{content:"✓";background:var(--ok);color:#fff;border-color:var(--ok)}
+.st button{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:12px 16px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.st button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.st h3{margin:0;font-size:19px}
+.st p{margin:2px 0 0;color:var(--mute);font-size:14px}
+.tag{font-size:11px;font-weight:800;background:var(--hi);color:#1a2340;border-radius:4px;padding:1px 6px;margin-left:8px;vertical-align:middle}
+.mini{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}.mini i{display:block;height:100%;background:var(--ok)}
+.lesson{display:grid;grid-template-columns:200px 1fr;gap:20px;margin-top:18px}
+.steps{display:flex;flex-direction:column;gap:6px}
+.steps button{text-align:left;border:2px solid var(--line);background:var(--card);border-radius:8px;padding:8px 10px;font-size:14px}
+.steps button.on{border-color:var(--ink);background:var(--hi);color:#1a2340;font-weight:700}
+.steps button.ok:after{content:" ✓";color:var(--ok);font-weight:800}
+.panel{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:18px;box-shadow:5px 5px 0 var(--ink)}
+.panel h2{margin:0 0 6px;font-size:28px}
+.panel p{max-width:68ch}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.pane{border:2px solid var(--ink);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:260px}
+.pane>span{font-size:12px;font-weight:700;padding:5px 10px;border-bottom:2px solid var(--ink);background:var(--line);color:var(--ink)}
+textarea{flex:1;width:100%;min-height:240px;border:0;resize:vertical;background:var(--code);color:var(--codeink);padding:12px;font-size:13px;line-height:1.6;tab-size:2}
+iframe{flex:1;border:0;background:#fff;min-height:240px;width:100%}
+.q{border-top:2px dashed var(--line);padding-top:14px}
+.q h4{margin:0 0 8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{border:2px solid var(--ink);background:var(--card);border-radius:8px;padding:8px 12px}
+.opts button:hover{background:var(--hi);color:#1a2340}
+.opts .right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts .wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fb{min-height:24px;font-weight:700;margin-top:8px}
+.chk{list-style:none;padding:0;margin:8px 0}
+.chk li:before{content:"○ ";color:var(--mute)}.chk li.y:before{content:"● ";color:var(--ok)}.chk li.y{color:var(--ok);font-weight:700}
+.nav{display:flex;justify-content:space-between;margin-top:16px}
+svg.fig{max-width:100%;height:auto;border:2px solid var(--ink);border-radius:10px;background:var(--bg)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:700;transition:transform .3s;z-index:9}
+.toast.on{transform:translate(-50%,0)}
+.hide{display:none}
+@media(max-width:760px){.lesson{grid-template-columns:1fr}.steps{flex-direction:row;overflow-x:auto}.steps button{white-space:nowrap}.lab{grid-template-columns:1fr}}
+/* friendly soft look */
+body{background-size:32px 32px}
+header.top{border-bottom:1px solid var(--edge);box-shadow:0 4px 14px rgba(79,124,255,.08)}
+.bar,.btn,.opts button,.pane,.panel,svg.fig,.st button,.steps button.on{border-width:1.5px;border-color:var(--edge)}
+.pane>span{border-bottom:1.5px solid var(--edge)}
+.btn,.opts button,.steps button,.bar{border-radius:12px}
+.st button,.panel,.pane,svg.fig{border-radius:18px}
+.st button,.panel{box-shadow:0 8px 22px rgba(79,124,255,.13)}
+.st button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(79,124,255,.2);border-color:var(--ac)}
+.st:before{border:2px solid var(--ac);color:var(--ac)}
+.st.done:before{border-color:var(--ok);color:#fff}
+.trail:before{border-left:3px dotted var(--ac);opacity:.45}
+.btn:hover,.opts button:hover{border-color:var(--ac)}
+.btn.pri{border-color:var(--ac)}
+.steps button.on{border-color:var(--hi)}
+/* playful learning theme */
+body{background-image:none;font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+header.top{border-bottom:2px solid #e5e5e5;box-shadow:none;background:#fff}
+.logo{font-weight:900;color:var(--g);font-size:24px}
+.logo b{background:none;color:var(--b);padding:0}
+.bar{height:16px;border:0;background:#e5e5e5;border-radius:99px}
+.bar i{background:var(--g);border-radius:99px}
+h1{font-weight:900;color:var(--ink)}
+.btn,.opts button,.steps button{border:2px solid #e5e5e5;border-bottom-width:4px;background:#fff;border-radius:14px;font-weight:800}
+.btn:hover,.opts button:hover,.steps button:hover{background:#f7f7f7;border-color:#e5e5e5;color:var(--ink)}
+.btn.pri{background:var(--g);border-color:var(--g);border-bottom-color:#46a302;color:#fff}
+.btn.pri:hover{background:#61d800;color:#fff;border-color:#61d800;border-bottom-color:#46a302}
+.btn:active,.opts button:active{transform:translateY(2px);border-bottom-width:2px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.trail{padding-left:52px}
+.trail:before{left:21px;border-left:4px dotted #d5d5d5;opacity:1}
+.st{--c:var(--g)}
+.st:nth-child(5n+2){--c:var(--b)}.st:nth-child(5n+3){--c:var(--p)}.st:nth-child(5n+4){--c:var(--o)}.st:nth-child(5n+5){--c:var(--r)}
+.st:before{left:-52px;top:8px;width:44px;height:44px;font-size:22px;border:0;border-bottom:4px solid rgba(0,0,0,.18);background:var(--c);color:#fff}
+.st.done:before{background:var(--g);color:#fff;border:0;border-bottom:4px solid #46a302}
+.st button{border:2px solid #e5e5e5;border-bottom:5px solid var(--c);border-radius:18px;box-shadow:none;background:#fff}
+.st button:hover{transform:translateY(-2px);box-shadow:none;border-color:var(--c);background:#fff}
+.st h3{font-weight:900;font-size:20px}
+.tag{background:var(--o);color:#fff;border-radius:99px;padding:1px 8px}
+.mini{height:8px;background:#e5e5e5;border-radius:99px}.mini i{background:var(--c);border-radius:99px}
+.steps button.on{background:#ddf4ff;border-color:var(--b);color:#0b7bb5}
+.panel{border:2px solid #e5e5e5;border-bottom-width:5px;border-radius:20px;box-shadow:none}
+.panel h2{font-weight:900}
+.pane{border:2px solid #e5e5e5;border-radius:16px}
+.pane>span{background:#f7f7f7;color:var(--mute);border-bottom:2px solid #e5e5e5}
+.q{border-top:2px dashed #e5e5e5}
+.opts .right{background:#d7ffb8;border-color:var(--g);color:#2b7a00}
+.opts .wrong{background:#ffdfe0;border-color:var(--r);color:#b01919}
+svg.fig{border:2px solid #e5e5e5;border-radius:16px;background:#f7fbff}
+.toast{background:var(--g);color:#fff;border-bottom:4px solid #46a302}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <button class="logo" onclick="home()" aria-label="Back to the trail">HTML <b>Trail</b></button>
+  <div class="meter"><div class="bar"><i id="xpb"></i></div><div class="stat" id="xpt"></div></div>
+  </div></header>
+
+<main class="wrap">
+  <section id="home">
+    <h1>Learn HTML by typing it.</h1>
+    <p class="lead">Eleven stops from your first tag to a finished page. Edit the code, watch the page change, answer one quick question, and earn XP. Stops marked <span class="tag" style="margin:0">ADDED</span> cover topics your six decks didn't have yet.</p>
+    <ol class="trail" id="trail"></ol>
+    <p class="stat" style="margin-top:24px"><button class="btn" onclick="resetAll()">Reset progress</button></p>
+  </section>
+  <section id="les" class="hide"></section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const IMG='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="160"><rect width="300" height="160" fill="#2f5bff"/><circle cx="230" cy="45" r="24" fill="#ffd23f"/><path d="M0 160 90 70 160 130 220 90 300 160Z" fill="#14935f"/></svg>');
+const FIG='<svg class="fig" viewBox="0 0 520 190" role="img" aria-label="Browser requests a page from a server and receives HTML"><g font-family="sans-serif" font-size="14" fill="#1a2340"><rect x="10" y="50" width="130" height="90" rx="8" fill="#ffd23f" stroke="#1a2340" stroke-width="2"/><text x="40" y="100">Browser</text><rect x="380" y="50" width="130" height="90" rx="8" fill="#9db4ff" stroke="#1a2340" stroke-width="2"/><text x="414" y="100">Server</text><path d="M145 75H375" stroke="#1a2340" stroke-width="2"/><path d="M375 115H145" stroke="#1a2340" stroke-width="2" stroke-dasharray="5 4"/><text x="190" y="66">1. Ask for index.html</text><text x="175" y="136">2. Send back HTML text</text><text x="30" y="170">3. Browser turns tags into the page you see</text></g></svg>';
+const M=[
+{t:"How the web reads HTML",d:"What HTML is and how a browser uses it",add:1,s:[
+ {t:"What is HTML?",x:"HTML (HyperText Markup Language) is the skeleton of every web page. You wrap content in tags, and the browser turns those tags into headings, links, images and forms. CSS adds style and JavaScript adds behaviour.",f:FIG,c:"<h1>Hello, web!</h1>\n<p>HTML describes <em>what</em> things are.</p>",q:["Which language gives a page its structure?",["HTML","CSS","Python"],0]},
+ {t:"Tags & attributes",x:"A tag has an opening and a closing part, like <p>…</p>. Attributes add detail inside the opening tag as name=\"value\". Empty tags such as <hr>, <br> and <img> need no closing tag. Comments are written <!-- like this --> and are never shown.",c:"<!-- I am invisible -->\n<a href=\"#\" title=\"A tooltip\">Hover me</a>\n<br>\n<hr>",q:["In <a href=\"x\">, what is href?",["A tag","An attribute","A comment"],1]}]},
+{t:"Basic HTML structure",d:"Document skeleton, headings, paragraphs, links",s:[
+ {t:"The skeleton",x:"Every page starts with <!DOCTYPE html>, then <html> holds <head> (title, settings, nothing visible) and <body> (everything you see). Change the title text and note that it appears in the browser tab, not in the page.",c:"<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>My first page</title>\n</head>\n<body>\n  <p>Visible content lives in body.</p>\n</body>\n</html>",q:["Where does visible page content go?",["<head>","<body>","<title>"],1]},
+ {t:"Headings & paragraphs",x:"<h1> to <h6> make six heading levels, getting smaller as the number grows. Use one <h1> per page for the main topic. <p> makes a paragraph and browsers add spacing around it. Both are paired tags.",c:"<h1>Main Heading</h1>\n<h2>Sub Heading</h2>\n<h3>Smaller</h3>\n<p>This is a paragraph of text on the website.</p>",q:["Which is the largest heading?",["<h6>","<h1>","<h3>"],1]},
+ {t:"Links with <a>",x:"The anchor tag makes hyperlinks. href (Hypertext Reference) is the destination. target=\"_blank\" opens a new tab and title adds a hover tooltip. Both are optional. Also try href=\"mailto:you@site.com\", href=\"tel:+911234567890\" and #section links that jump within the page.",c:"<h1>My Portfolio</h1>\n<p>Visit my profile:</p>\n<a href=\"https://google.com\" target=\"_blank\" title=\"Go to Google\">Open Google</a>\n<p><a href=\"mailto:me@example.com\">Email me</a></p>",q:["Which attribute holds the link address?",["src","href","title"],1]}]},
+{t:"Text formatting",d:"Bold, italic, underline, rules and more",s:[
+ {t:"b, i, u",x:"<b> makes text bold, <i> italic and <u> underlined. They change the look only. All three are paired tags and need a closing tag.",c:"<p>This is <b>bold</b> text.</p>\n<p>This is <i>italic</i> text.</p>\n<p>This is <u>underlined</u> text.</p>",q:["Which tag needs a closing tag?",["<b>","<hr>","Neither"],0]},
+ {t:"Horizontal rule",x:"<hr> draws a divider line for a thematic break, such as between chapters. It is an empty (self-closing) tag, written <hr> or <hr />.",c:"<h1>Chapter 1</h1>\n<p>This is the first chapter content.</p>\n<hr>\n<h1>Chapter 2</h1>\n<p>This is the second chapter content.</p>",q:["<hr> is…",["A paired tag","An empty tag","A heading"],1]},
+ {t:"Meaning-based tags",x:"Prefer tags that carry meaning. <strong> marks important text, <em> adds emphasis, <mark> highlights, <del> and <ins> show edits, <sub> and <sup> make subscript and superscript, <code> shows code, <blockquote> a quotation, and <br> breaks a line. Screen readers treat strong and em differently from b and i.",c:"<p>Water is H<sub>2</sub>O and E = mc<sup>2</sup>.</p>\n<p><strong>Important:</strong> <mark>save often</mark>.</p>\n<p>Price: <del>$20</del> <ins>$15</ins></p>\n<p>Line one<br>Line two</p>\n<blockquote>Practice makes perfect.</blockquote>\n<p>Use <code>&lt;p&gt;</code> for paragraphs. &copy; 2026</p>",q:["Which tag marks text as important?",["<strong>","<u>","<sub>"],0]}],add:0},
+{t:"Images, audio, video & iframes",d:"Embed media on a page",s:[
+ {t:"Images",x:"<img> embeds a picture. src is the file or URL and alt describes it for screen readers and broken links. It is an empty tag. Add width, height and loading=\"lazy\". Wrap in <figure> with <figcaption> for a caption. (The sample.jpg here is swapped for a built-in picture so it works offline.)",c:"<figure>\n  <img src=\"sample.jpg\" alt=\"Green hills under a blue sky\" width=\"300\" loading=\"lazy\">\n  <figcaption>Hills at noon</figcaption>\n</figure>",q:["What is alt for?",["Image size","Text alternative","Image link"],1]},
+ {t:"Audio & video",x:"<audio> and <video> play media natively. controls shows play, pause and volume. Give a file with src, or several <source> options. Useful extras are poster, autoplay (usually needs muted), loop and preload. Text inside the tag is the fallback. (No media file is attached here, so you only see the empty player.)",c:"<audio controls src=\"beep.ogg\">\n  Your browser does not support audio.\n</audio>\n<br>\n<video controls width=\"260\" poster=\"cover.jpg\">\n  <source src=\"clip.mp4\" type=\"video/mp4\">\n</video>",q:["Which attribute shows play/pause buttons?",["controls","poster","loop"],0]},
+ {t:"iframe",x:"An iframe is a separate window inside your page. Use it to show a YouTube video, a map or another website. src is the address and title describes it for accessibility. allowfullscreen lets the viewer go full screen. (Live embeds are blocked in this editor, so copy this into your own page to see it work.)",c:"<iframe\n  src=\"https://www.youtube.com/embed/BdgwH614LM0\"\n  width=\"100%\" height=\"250\"\n  title=\"YouTube video player\"\n  allowfullscreen></iframe>",q:["An iframe is best described as…",["A page inside a page","A text style","A list"],0]}]},
+{t:"Lists & tables",d:"Bullets, numbers, nesting, rows and columns",s:[
+ {t:"ul, ol, li",x:"<ul> is a bulleted list where order doesn't matter. <ol> is numbered where order does. Each item is an <li>. Add type or start on <ol> to change numbering. <dl>, <dt> and <dd> build a definition list.",c:"<h3>Unordered</h3>\n<ul><li>HTML5</li><li>CSS3</li></ul>\n<h3>Ordered</h3>\n<ol start=\"1\"><li>Frontend</li><li>Backend</li></ol>\n<dl><dt>HTML</dt><dd>Page structure</dd></dl>",q:["Steps in a recipe need…",["<ul>","<ol>","<dl>"],1]},
+ {t:"Nested lists",x:"A list inside another list is a nested list. It models hierarchy, such as menus and sitemaps. Place the inner list inside an <li> so the markup stays valid.",c:"<ul>\n  <li>Web Development\n    <ol><li>HTML Basics</li><li>CSS Styling</li></ol>\n  </li>\n  <li>Database\n    <ul><li>SQL</li></ul>\n  </li>\n</ul>",q:["Where should a nested list go?",["Inside an <li>","After </body>","Inside <head>"],0]},
+ {t:"Tables",x:"<table> wraps the data, <tr> is a row, <th> a header cell and <td> a data cell. For structure add <caption>, <thead>, <tbody> and <tfoot>. colspan merges columns, rowspan merges rows.",c:"<table border=\"1\">\n  <caption>Team</caption>\n  <thead><tr><th>Name</th><th>Role</th></tr></thead>\n  <tbody>\n    <tr><td>Rahul</td><td>Developer</td></tr>\n    <tr><td colspan=\"2\">Merged cell</td></tr>\n  </tbody>\n</table>",q:["Which tag merges columns?",["rowspan","colspan","border"],1]}]},
+{t:"id & class",d:"Name elements so CSS and JavaScript can find them",s:[
+ {t:"id",x:"An id must be unique on the page, is case-sensitive and has no spaces (use hyphens). CSS targets it with #, and JavaScript finds it with getElementById. Links can jump to it too. Click the link below.",c:"<style>#main-header{color:indigo}</style>\n<a href=\"#intro-text\">Jump to paragraph</a>\n<h1 id=\"main-header\">Welcome</h1>\n<p style=\"margin-top:400px\" id=\"intro-text\">Unique identifier.</p>",q:["Can two elements share one id?",["Yes","No"],1]},
+ {t:"class",x:"A class can be reused on many elements, and one element can carry several (space-separated). CSS targets it with a dot. Use id for unique hooks and class for repeated styling.",c:"<style>\n.card-title{color:#2f5bff}\n.highlight{background:yellow}\n</style>\n<h2 class=\"card-title\">Feature One</h2>\n<p class=\"card-text highlight\">First item</p>\n<h2 class=\"card-title\">Feature Two</h2>\n<p class=\"card-text\">Second item</p>",q:["CSS selector for a class starts with…",["#","."," *"],1]},
+ {t:"div & span",x:"<div> is a generic block box that groups big chunks. <span> is a generic inline wrapper for part of a line. Combine them with class and id to build layouts. Prefer meaningful tags when one exists (see Semantic layout).",c:"<style>.box{border:2px solid #2f5bff;padding:8px}.red{color:crimson}</style>\n<div class=\"box\" id=\"card\">\n  A normal line with a <span class=\"red\">red span</span> inside.\n</div>",q:["Which is inline?",["<div>","<span>"],1]}]},
+{t:"Forms & input types",d:"Text, radio, checkbox, password, buttons",s:[
+ {t:"Text & submit",x:"A <form> collects user input. <input type=\"text\"> is a one-line box and placeholder shows a hint. type=\"submit\" sends the form and value sets its label. Always pair inputs with a <label> so they're clickable and accessible.",c:"<form>\n  <label>Name: <input type=\"text\" placeholder=\"Enter your name\"></label>\n  <input type=\"submit\" value=\"Submit\">\n</form>",q:["Which attribute shows a hint inside a box?",["value","placeholder","name"],1]},
+ {t:"Radio & checkbox",x:"Radio buttons allow one choice from many, and they only group when they share the same name. Checkboxes allow zero, one or many choices. Try selecting several of each.",c:"<form>\n  Gender:\n  <label><input type=\"radio\" name=\"g\"> Male</label>\n  <label><input type=\"radio\" name=\"g\"> Female</label>\n  <br>Hobbies:\n  <label><input type=\"checkbox\"> Coding</label>\n  <label><input type=\"checkbox\"> Gaming</label>\n</form>",q:["Pick one of many uses…",["checkbox","radio","reset"],1]},
+ {t:"Password, reset, button",x:"type=\"password\" hides characters as dots. type=\"reset\" returns every field to its default. type=\"button\" is a plain push button that does nothing until you attach JavaScript, such as onclick.",c:"<form>\n  Password: <input type=\"password\"><br><br>\n  Feedback: <input type=\"text\">\n  <input type=\"reset\" value=\"Clear Form\">\n  <input type=\"button\" value=\"Click Me!\" onclick=\"alert('button activated')\">\n</form>",q:["Which button clears the form?",["reset","submit","button"],0]}]},
+{t:"More form controls",d:"Email, number, date, select, textarea, validation",add:1,s:[
+ {t:"Modern input types",x:"HTML5 gives smarter inputs: email, number, date, color, range, file, tel and url. Phones show matching keyboards and browsers check the format for you.",c:"<form>\n  <label>Email <input type=\"email\"></label><br>\n  <label>Age <input type=\"number\" min=\"1\" max=\"99\"></label><br>\n  <label>Birthday <input type=\"date\"></label><br>\n  <label>Colour <input type=\"color\"></label><br>\n  <label>Volume <input type=\"range\"></label>\n</form>",q:["Which type opens a date picker?",["date","text","tel"],0]},
+ {t:"select, textarea & validation",x:"<select> with <option> makes a dropdown and <textarea> a multi-line box. Group fields with <fieldset> and <legend>. Add required, minlength or pattern for free validation, then press Send with the form empty.",c:"<form>\n  <fieldset><legend>Contact</legend>\n  <input type=\"email\" required placeholder=\"Email (required)\"><br>\n  <select name=\"c\"><option>HTML</option><option>CSS</option></select><br>\n  <textarea rows=\"3\" placeholder=\"Message\"></textarea><br>\n  <button type=\"submit\">Send</button>\n  </fieldset>\n</form>",q:["Which attribute blocks an empty field?",["required","hidden","min"],0]}]},
+{t:"Semantic layout",d:"header, nav, main, section, article, footer",add:1,s:[
+ {t:"Meaningful page parts",x:"Instead of div everywhere, use <header>, <nav>, <main>, <section>, <article>, <aside> and <footer>. They look identical until styled, but they help search engines, screen readers and other developers understand the page.",c:"<header><h1>My Blog</h1>\n  <nav><a href=\"#\">Home</a> | <a href=\"#\">About</a></nav>\n</header>\n<main>\n  <article><h2>First post</h2><p>Hello!</p></article>\n  <aside>Side note</aside>\n</main>\n<footer>&copy; 2026</footer>",q:["Main navigation links belong in…",["<nav>","<aside>","<footer>"],0]}]},
+{t:"Accessibility & SEO",d:"Pages everyone and every search engine can use",add:1,s:[
+ {t:"Head tags & good habits",x:"Inside <head>, set <meta charset>, a viewport meta for phones and a meta description for search results. Habits that matter: write real alt text, one h1 per page, keep heading order, use label for inputs, write link text that makes sense alone (not \"click here\"), set lang on <html>, and indent your code.",c:"<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"description\" content=\"My learning notes\">\n  <title>Notes</title>\n</head>\n<body><p>Check the tab title.</p></body>",q:["Best link text?",["Click here","Read the HTML guide"],1]}]}
+];
+const FIN={t:"Final project",d:"Build a profile page and pass the checklist",add:1,s:[{t:"Build it",x:"Edit this page until every item on the checklist turns green. Add what's missing.",c:"<h1>My Profile</h1>\n<p>Hi, I am learning HTML.</p>\n",fin:1,q:["Finished? Pick the fastest way to share a page online.",["Upload the .html file to hosting","Print it"],0]}]};
+M.push(FIN);
+const CHK=[["A heading",/<h1/i],["A paragraph",/<p[ >]/i],["A link with href",/<a[^>]+href/i],["An image with alt",/<img[^>]+alt=/i],["A list",/<(ul|ol)/i],["A table",/<table/i],["A form with an input",/<form[\s\S]*<input/i],["A class or id",/(class|id)=/i],["A semantic tag",/<(header|main|section|article|footer|nav)/i]];
+const IC=['🌐','🏗️','✍️','🖼️','📋','🏷️','📝','🎛️','🧱','♿','🏆'];
+const $=s=>document.querySelector(s);
+let S={d:{}};try{S=JSON.parse(localStorage.getItem('htmltrail')||'{"d":{}}')}catch(e){}
+const save=()=>{try{localStorage.setItem('htmltrail',JSON.stringify(S))}catch(e){}};
+const keys=m=>M[m].s.map((_,i)=>m+'.'+i);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
+function stats(){const n=Object.keys(S.d).length,tot=M.reduce((a,m)=>a+m.s.length,0),xp=n*10,lv=Math.floor(xp/50)+1;
+ $('#xpb').style.width=(n/tot*100)+'%';$('#xpt').textContent=`Level ${lv} · ${xp} XP · ${n}/${tot} steps`}
+function home(){$('#les').classList.add('hide');$('#home').classList.remove('hide');
+ $('#trail').innerHTML=M.map((m,i)=>{const k=keys(i).filter(x=>S.d[x]).length,p=k/m.s.length*100;
+  return `<li class="st ${k==m.s.length?'done':''}" data-n="${IC[i]}"><button onclick="open_(${i},0)"><h3>${m.t}${m.add?'<span class="tag">ADDED</span>':''}</h3><p>${m.d} · ${m.s.length} step${m.s.length>1?'s':''}</p><div class="mini"><i style="width:${p}%"></i></div></button></li>`}).join('');
+ stats();window.scrollTo(0,0)}
+function open_(m,i){$('#home').classList.add('hide');const L=$('#les');L.classList.remove('hide');const M_=M[m],st=M_.s[i];
+ L.innerHTML=`<button class="btn" onclick="home()">← Back to trail</button>
+ <div class="lesson"><nav class="steps" aria-label="Steps">${M_.s.map((s,j)=>`<button class="${j==i?'on':''} ${S.d[m+'.'+j]?'ok':''}" onclick="open_(${m},${j})">${s.t}</button>`).join('')}</nav>
+ <div class="panel"><h2>${M_.t}: ${st.t}</h2><p>${esc(st.x)}</p>${st.f||''}
+ <div class="lab"><div class="pane"><span>Edit the code</span><textarea id="ed" spellcheck="false" aria-label="Code editor"></textarea></div>
+ <div class="pane"><span>Live result</span><iframe id="pv" title="Live preview" sandbox="allow-scripts allow-forms allow-modals"></iframe></div></div>
+ <button class="btn" onclick="$('#ed').value=CUR;run()">Reset code</button>
+ ${st.fin?'<ul class="chk" id="chk"></ul>':''}
+ <div class="q"><h4>Quick check: ${esc(st.q[0])}</h4><div class="opts">${st.q[1].map((o,j)=>`<button onclick="ans(${m},${i},${j},this)">${esc(o)}</button>`).join('')}</div><div class="fb" id="fb" aria-live="polite">${S.d[m+'.'+i]?'Done ✓ (+10 XP earned)':''}</div></div>
+ <div class="nav"><button class="btn" ${i==0&&m==0?'disabled':''} onclick="go(${m},${i},-1)">← Previous</button><button class="btn pri" onclick="go(${m},${i},1)">Next →</button></div></div></div>`;
+ window.CUR=st.c;const ed=$('#ed');ed.value=st.c;ed.oninput=run;
+ ed.onkeydown=e=>{if(e.key=='Tab'){e.preventDefault();const p=ed.selectionStart;ed.setRangeText('  ',p,ed.selectionEnd,'end');run()}};
+ run();window.scrollTo(0,0)}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function run(){const v=$('#ed').value;
+ $('#pv').srcdoc='<meta charset="utf-8"><body style="font:15px/1.5 system-ui;margin:12px;color:#1a2340">'+v.replace(/src="sample\.jpg"/g,'src="'+IMG+'"');
+ const c=$('#chk');if(c)c.innerHTML=CHK.map(x=>`<li class="${x[1].test(v)?'y':''}">${x[0]}</li>`).join('')}
+function ans(m,i,j,b){const ok=j==M[m].s[i].q[2];b.classList.add(ok?'right':'wrong');
+ if(ok){const first=!S.d[m+'.'+i];S.d[m+'.'+i]=1;save();stats();
+  $('#fb').textContent=first?'Correct! +10 XP':'Correct!';if(first)toast('+10 XP');
+  const fin=M[m].s[i].fin;if(fin&&!$('#chk .y:last-child')){} 
+  if(Object.keys(S.d).length==M.reduce((a,x)=>a+x.s.length,0))toast('Trail complete. You know the HTML basics!')}
+ else $('#fb').textContent='Not quite. Re-read the lesson and try again.'}
+function go(m,i,d){let j=i+d;if(j>=0&&j<M[m].s.length)return open_(m,j);
+ let n=m+d;if(n<0)return;if(n>=M.length)return home();open_(n,d>0?0:M[n].s.length-1)}
+function resetAll(){if(confirm('Clear all progress?')){S={d:{}};save();home()}}
+home();
+</script>
+</body>
+</html>

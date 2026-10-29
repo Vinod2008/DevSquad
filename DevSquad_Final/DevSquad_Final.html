@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HTML Basics: a hands-on guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--card:#fff;--ink:#10233b;--mut:#55677d;--line:#d6dee8;--pri:#2f5bea;--hl:#ffe066;--ok:#17855c;--bad:#c2410c;--c1:#7c3aed;--c2:#2563eb;--c3:#059669;--c4:#db2777;--c5:#d97706;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 'Bricolage Grotesque',system-ui,sans-serif}
+code,textarea,.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--pri)}
+:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.top{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font-weight:800;font-size:18px;text-decoration:none;color:var(--ink)}
+.logo b{background:var(--hl);padding:0 6px;border-radius:4px}
+.sp{flex:1}
+.ib{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px}
+.ib:hover{border-color:var(--pri)}
+.wrap{display:grid;grid-template-columns:270px 1fr;max-width:1250px;margin:0 auto}
+nav{position:sticky;top:60px;align-self:start;padding:24px 16px;display:flex;flex-direction:column;gap:4px;max-height:calc(100vh - 60px);overflow:auto}
+nav a{display:flex;gap:10px;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:15px;line-height:1.3}
+nav a:hover{background:var(--card)}
+nav a.on{background:var(--card);font-weight:600;box-shadow:inset 3px 0 var(--pri)}
+nav .n{color:var(--mut);min-width:1.2em}
+nav .ck{margin-left:auto;color:var(--ok)}
+main{padding:32px 28px 80px;min-width:0}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.08;margin:0 0 12px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:22px;margin:0 0 14px;font-weight:600}
+.lead{color:var(--mut);max-width:56ch;font-size:18px;margin:0 0 24px}
+mark{background:var(--hl);color:inherit;padding:0 .2em;border-radius:3px}
+.bar2{height:8px;background:var(--line);border-radius:8px;max-width:360px;overflow:hidden;margin:0 0 6px}
+.bar2 i{display:block;height:100%;background:var(--ok);transition:width .4s}
+.srch{width:100%;max-width:420px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;margin:18px 0 8px}
+.toc{list-style:none;padding:0;margin:16px 0;display:grid;gap:10px}
+.toc a{display:flex;align-items:center;gap:18px;padding:16px 20px;background:var(--card);border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink)}
+.toc a:hover{border-color:var(--pri);transform:translateX(4px);transition:.15s}
+.toc .big{font-size:38px;font-weight:800;color:var(--pri);min-width:1.4em}
+.toc strong{display:block;font-size:19px}
+.toc small{color:var(--mut)}
+.toc .ck{margin-left:auto;color:var(--ok);font-weight:600}
+.cta{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:10px 20px;font-weight:600;text-decoration:none;display:inline-block}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:0 0 22px}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ed,.out{border-radius:12px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.ed{background:#101a2b}
+.bh{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:13px;color:#9db0c6;background:#0a1220}
+.out .bh{background:var(--bg);color:var(--mut)}
+.bh span{flex:1}
+.bh button{background:transparent;border:1px solid #33465f;color:#cfe;border-radius:6px;font-size:12px;padding:2px 8px}
+textarea{flex:1;min-height:250px;width:100%;resize:vertical;background:transparent;color:#e2ecfa;border:0;padding:14px;font-size:13px;line-height:1.6;tab-size:2;white-space:pre}
+iframe{flex:1;width:100%;min-height:250px;border:0;background:#fff}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:16px}
+.note{border-left:4px solid var(--c1);background:var(--bg);border-radius:10px;padding:12px 14px;font-size:15px}
+.note:nth-child(5n+2){border-color:var(--c2)}.note:nth-child(5n+3){border-color:var(--c3)}.note:nth-child(5n+4){border-color:var(--c4)}.note:nth-child(5n+5){border-color:var(--c5)}
+.note h3{margin:0 0 4px;font-size:14px;font-family:'JetBrains Mono',monospace}
+.note p{margin:0}
+code{background:var(--bg);padding:1px 5px;border-radius:4px;font-size:.9em}
+.tw{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:15px}
+.t th,.t td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.t th{background:var(--bg)}
+.try{border:1px solid var(--pri);background:transparent;color:var(--pri);border-radius:8px;padding:2px 12px}
+.try:hover{background:var(--pri);color:#fff}
+.quiz{border:2px dashed var(--line);border-radius:16px;padding:20px;margin:28px 0}
+.quiz h2{font-size:18px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px}
+.opt:hover{border-color:var(--pri)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--card))}
+.pn{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}
+.pn a,.pn button{padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.pn .done{border-color:var(--ok);color:var(--ok)}
+@media (max-width:900px){
+ .wrap{grid-template-columns:1fr}
+ nav{position:static;flex-direction:row;overflow-x:auto;padding:10px 14px;max-height:none;border-bottom:1px solid var(--line)}
+ nav a{white-space:nowrap;flex:none}
+ main{padding:22px 16px 60px}
+ .pg{grid-template-columns:1fr}
+}
+:root{color-scheme:dark;--bg:#0b1020;--card:rgba(255,255,255,.06);--ink:#eef2ff;--mut:#a9b4d6;--line:rgba(255,255,255,.13);--pri:#a78bfa;--ok:#34d399;--bad:#fb7185}
+body{background:radial-gradient(900px 520px at 88% -8%,rgba(168,85,247,.38),transparent),radial-gradient(760px 520px at -6% 18%,rgba(34,211,238,.24),transparent),radial-gradient(700px 500px at 60% 110%,rgba(236,72,153,.2),transparent),#0b1020;background-attachment:fixed}
+.top{background:rgba(11,16,32,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo b{background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6);color:#0b1020;border-radius:8px;padding:0 8px}
+#sp{position:fixed;top:0;left:0;height:3px;width:0;z-index:9;background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6)}
+.gt{background:linear-gradient(90deg,#22d3ee,#a78bfa 45%,#f472b6,#22d3ee);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200% center}}
+.tyl{font-size:20px;color:#67e8f9;min-height:1.6em;margin:0 0 18px}
+.cur{display:inline-block;width:9px;height:1.1em;background:#f472b6;vertical-align:-3px;margin-left:2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.lesson{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border-radius:22px;position:relative;overflow:hidden}
+.toc a{background:var(--card);border-radius:18px;position:relative;overflow:hidden}
+.toc a::before,.lesson::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,.28),transparent 70%);opacity:0;transition:opacity .25s;pointer-events:none}
+.toc a:hover::before,.lesson:hover::before{opacity:1}
+.toc a:hover{border-color:#a78bfa}
+.toc .big{background:linear-gradient(135deg,#22d3ee,#a855f7 60%,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{background:linear-gradient(90deg,#06b6d4,#8b5cf6,#ec4899);color:#fff;border:0;border-radius:999px;padding:12px 28px;box-shadow:0 10px 28px -10px rgba(139,92,246,.8);transition:transform .15s}
+.cta:hover{transform:translateY(-2px) scale(1.03)}
+.srch{border-radius:999px;padding:12px 20px}
+nav a.on{background:linear-gradient(90deg,rgba(139,92,246,.38),rgba(34,211,238,.12));box-shadow:none}
+.note{background:rgba(255,255,255,.05)}
+.t th{background:rgba(139,92,246,.25)}
+.opt{border-radius:12px}
+.opt.sel{border-color:#a78bfa;background:rgba(139,92,246,.28)}
+.bar2 i{background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6)}
+.pn a,.pn button{border-radius:999px}
+.quiz{background:rgba(255,255,255,.04);border-radius:20px}
+.res{border-radius:20px;padding:24px;margin:20px 0;border:1px solid var(--line);background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(168,85,247,.24),rgba(236,72,153,.2))}
+.res b{font-size:46px;display:block;line-height:1.1}
+.cf{position:fixed;top:-20px;width:8px;height:14px;z-index:20;border-radius:2px;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+ <a class="logo" href="#home">HTML <b>Basics</b></a><div id="sp"></div>
+</header>
+<div class="wrap"><nav id="nav" aria-label="Chapters"></nav><main id="main"></main></div>
+
+<script>
+const T=(h,r)=>`<div class="tw"><table class="t"><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(a=>`<tr>${a.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`;
+const IN=[['<Input type = "text">','Creates a one line textbox'],['<Input type = "radio">','Creates a radio button. The radio button allows one option selection against multiple choices.'],['<Input type = "checkbox">','Creates a checkbox. It allows more than one selection against multiple choices.'],['<Input type = "submit">','Displays a button for submitting the form data to a server.'],['<Input type = "password">','The password input type is used to create text contents in the form of \'*\' asterik or \'•\' disc.'],['<Input type = "reset">','The reset control clears the text content entered in the form.'],['<Input type = "button">','It displays push button which activates on events.']];
+const e0=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const D=[
+{id:'ch1',t:'Basic HTML Structure',s:'Page skeleton, headings, paragraphs and links',q:['Which tag creates the largest, most important heading?',['<h6>','<h1>','<p>','<a>'],1],L:[
+{t:'The page skeleton, comments & line breaks',c:`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Page</title>
+  </head>
+  <body>
+    <!-- A comment: the browser ignores it -->
+    <h1>Hello, web!</h1>
+    <p>Line one<br>Line two, after a line break.</p>
+  </body>
+</html>`,n:[['<!DOCTYPE html>','Tells the browser this page uses modern HTML5. It goes on the very first line and needs no closing tag.'],['<html>, <head>, <body>','{<html>} wraps everything. {<head>} holds page information such as the {<title>} shown on the browser tab. {<body>} holds everything visible on the page.'],['<!-- Comments -->','Notes for humans. The browser ignores them, so use them to explain your code.'],['<br> Line Break','Moves text to the next line. Like {<hr>}, it is an empty tag with no closing tag.']]},
+{t:'Headings & paragraphs',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Headings & Paragraphs</title>
+  </head>
+  <body>
+    <h1>Main Heading</h1>
+    <h2>Sub Heading</h2>
+    <p>This is a paragraph of text on the website.</p>
+  </body>
+</html>`,n:[['<h1> to <h6>','Defines 6 levels of headings. {<h1>} is the largest and most important main heading on the page. From {<h1>} to {<h6>}, the headings decrease in size.'],['<p> Paragraph','Defines a paragraph of regular body text. Browsers automatically add top and bottom spacing around paragraphs.'],['Paired Containers','Both are paired tags requiring an opening tag (e.g., {<p>}) and a closing tag (e.g., {</p>}).']]},
+{t:'Anchor tag <a href="...">',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Anchor Tag Demo</title>
+  </head>
+  <body>
+    <h1>My Portfolio</h1>
+    <p>Visit my profile:</p>
+    <a href="https://google.com" target="_blank" title="Go to Google">Open Google</a>
+  </body>
+</html>`,n:[['<a> Anchor Tag','Used to create hyperlinks. It is a paired container tag that requires a closing {</a>} tag.'],['href="..." Attribute','Stands for Hypertext Reference. Specifies the target web address or URL destination of the link.'],['target="_blank"','Instructs the browser to open the target webpage in a brand new browser tab or window. [Note: not a problem if not used]'],['title="..." Attribute','Displays extra descriptive text as a floating desktop tooltip when hovering mouse cursor over the link. [Note: not a problem if not used]']]}]},
+{id:'ch2',t:'Text Formatting Tags',s:'Bold, italic, underline and dividers',q:['Which of these tags needs NO closing tag?',['<b>','<i>','<hr>','<u>'],2],L:[
+{t:'Bold <b>, italic <i>, underline <u>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Formatting</title>
+  </head>
+  <body>
+    <p>This is <b>bold</b> text.</p>
+    <p>This is <i>italic</i> text.</p>
+    <p>This is <u>underlined</u> text.</p>
+  </body>
+</html>`,n:[['<b> Bold Tag','Makes text bold to draw visual attention without adding extra importance. It is a paired tag requiring a closing {</b>} tag.'],['<i> Italic Tag','Displays text in an italicized style. Used for technical terms, foreign phrases, thoughts, or titles. Paired tag requiring {</i>}.'],['<u> Underline Tag','Renders text with a line beneath it. Useful for highlighting key words or annotations. Paired tag requiring {</u>}.']]},
+{t:'Horizontal rule <hr>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Horizontal Rule</title>
+  </head>
+  <body>
+    <h1>Chapter 1</h1>
+    <p>This is the first chapter content.</p>
+    <hr>
+    <h1>Chapter 2</h1>
+    <p>This is the second chapter content.</p>
+  </body>
+</html>`,n:[['<hr> Horizontal Rule','Creates a horizontal divider line. Used to represent a thematic break between paragraphs or topics.'],['Self-Closing / Empty Tag','Does NOT need a closing tag (unlike {<b>} or {<i>}). It is written as {<hr>} or {<hr />}.'],['Separator','Visually breaks up content to improve readability when transitioning between chapters, sections, topics or paragraphs.']]},
+{t:'Strong, emphasis, mark, sub & sup',c:`<p>This is <strong>very important</strong>.</p>
+<p>I <em>really</em> like HTML.</p>
+<p>Highlight: <mark>remember this</mark></p>
+<p>H<sub>2</sub>O and x<sup>2</sup></p>`,n:[['<strong> Strong','Marks text as important. Shown bold, and screen readers can stress it, unlike plain {<b>}.'],['<em> Emphasis','Stresses a word. Shown in italics, the meaning-based partner of {<i>}.'],['<mark> Highlight','Highlights text like a marker pen.'],['<sub> & <sup>','Subscript sits below the line (H2O), superscript above it (x2).']]}]},
+{id:'ch3',t:'Lists & Tables',s:'Bulleted, numbered and nested lists; tables with merged cells',q:['Which attribute merges cells across columns?',['rowspan','colspan','border','span'],1],L:[
+{t:'Basic lists <ul> & <ol>',c:`<h3>Unordered List</h3>
+<ul>
+  <li>HTML5</li>
+  <li>CSS3</li>
+</ul>
+<h3>Ordered List</h3>
+<ol>
+  <li>Frontend</li>
+  <li>Backend</li>
+</ol>`,n:[['<ul> Tag','Creates bulleted (unordered) items where sequence order doesn’t matter.'],['<ol> Tag','Creates numbered (ordered) items used when step sequence or priority matters.'],['<li> Tag','Represents individual List Items inside both {<ul>} and {<ol>} parents.']]},
+{t:'Nested lists',c:`<ul>
+  <li>Web Development</li>
+  <ol>
+    <li>HTML Basics</li>
+    <li>CSS Styling</li>
+  </ol>
+  <li>Database</li>
+  <ul>
+    <li>SQL</li>
+  </ul>
+</ul>`,n:[['Definition','A list within another list is called a nested list. It can be used to represent hierarchical data or subcategories.'],['Mixed Types','Mix ordered {<ol>} and unordered {<ul>} lists freely depending on sub-item context.'],['Navigation Trees','Essential foundation for dropdown menus, navigation bars, and multi-level sitemaps.']]},
+{t:'Table structure <table>',c:`<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>Rahul</td>
+    <td>Developer</td>
+  </tr>
+</table>`,n:[['<table> Tag','Main wrapper element used to declare a structured tabular dataset.'],['<tr> Tag','Table Row: creates a horizontal container for data cells and headers.'],['<th> & <td> Tags','{<th>} holds bold centered header cells; {<td>} holds standard table data cells.']]},
+{t:'Table attributes: colspan & rowspan',c:`<table border="1">
+  <tr>
+    <th colspan="2">Header Merged</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Span 2 Rows</td>
+    <td>Cell 1</td>
+  </tr>
+  <tr>
+    <td>Cell 2</td>
+  </tr>
+</table>`,n:[['colspan','Merges multiple columns horizontally into a single table cell.'],['rowspan','Merges multiple rows vertically across consecutive table rows.'],['border','Defines the border thickness around the table and its individual cells.']]},
+{t:'List types, start values & description lists',c:`<ol type="A" start="3">
+  <li>Third letter</li>
+  <li>Fourth letter</li>
+</ol>
+<dl>
+  <dt>HTML</dt>
+  <dd>The structure of a page</dd>
+  <dt>CSS</dt>
+  <dd>The style of a page</dd>
+</dl>`,n:[['type="..."','Sets the numbering style of an {<ol>}: 1, A, a, I or i.'],['start="..."','Chooses the number the list begins with.'],['<dl>, <dt>, <dd>','A description list: {<dt>} is the term and {<dd>} is its description.']]}]},
+{id:'ch4',t:'Media: images, video, audio, iframe',s:'Put pictures, sound and other pages on your site',q:['Which attribute gives an image a text alternative?',['src','alt','title','controls'],1],L:[
+{t:'Image tag <img>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Tag Demo</title>
+  </head>
+  <body>
+    <img src="https://picsum.photos/600/350" alt="Sample Image">
+  </body>
+</html>`,n:[['<img> Image Tag','Used to embed images on web pages. It is a self-closing tag that does not require a closing tag.'],['src="..." Attribute','Specifies the source path or URL of the image file to display on screen.'],['alt="..." Attribute','Provides alternate descriptive text for accessibility or if the image fails to load.']]},
+{t:'Video tag <video>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Tag Demo</title>
+  </head>
+  <body>
+    <iframe src="https://www.youtube.com/embed/q3AuP01daL4"
+      width="100%" height="250" allowfullscreen></iframe>
+  </body>
+</html>`,n:[['Video Embedding','Displays real video content embedded directly into your webpage layout using standard video players.'],['allowfullscreen','Permits users to expand the video player into full-screen mode on their monitor or screen.'],['Real Playback','Supports interactive playback controls including play, pause, seek, and volume adjustments.']]},
+{t:'Audio tag <audio>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Tag Demo</title>
+  </head>
+  <body>
+    <audio controls src="beep.ogg"></audio>
+  </body>
+</html>`,n:[['<audio> Tag','Used to play sound files or audio streams on a webpage.'],['controls Attribute','Displays standard browser controls like play, pause, and volume controls.'],['src="..." Attribute','Specifies the URL location of the audio file to load and play.']]},
+{t:'Iframe tag <iframe>',c:`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Iframe Demo</title>
+  </head>
+  <body>
+    <iframe
+      width="560" height="315"
+      src="https://www.youtube.com/embed/BdgwH614LM0?si=7EyJ4N0sKbRPx49x"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </body>
+</html>`,n:[['<iframe> Explanation (Hindi)','"iframe basically ek alag display hota hai, like map, youtube video or any other usko tumhe apne website pe dikhana hota hai to iframe use karte hai"']]},
+{t:'The real <video> tag',c:`<video width="320" controls>
+  <source src="movie.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>`,n:[['<video> Tag','Plays a video file that you host yourself. An {<iframe>} instead embeds a player from another site.'],['controls','Shows play, pause, seek and volume controls.'],['<source>','Gives the file ({src}) and its format ({type}). The text inside appears if the browser cannot play it.']]}]},
+{id:'ch5',t:'HTML Input Elements',s:'Textbox, radio, checkbox, submit, password, reset, button',q:['Which input type lets users pick only ONE option from several?',['text','checkbox','radio','reset'],2],L:[
+{t:'Overview table',x:1,h:()=>`<p>Click <b>Try</b> on any row to jump to its lesson.</p>`+T(['Type of Element','Purpose','Action'],IN.map((r,i)=>[`<code>${e0(r[0])}</code>`,e0(r[1]),`<button class="try" data-go="${i+2}">Try</button>`]))},
+{t:'type="text"',c:`<form>
+  Name: <input type="text" placeholder="Enter your name">
+  <input type="submit" value="Submit">
+</form>`,n:[['Purpose of <input type="text">','Creates a single-line textbox where users can type standard text like names, search queries, or titles.'],['placeholder','The placeholder attribute provides a hint, for what has to be entered in box.']]},
+{t:'type="radio"',c:`<form>
+  Gender:
+  <input type="radio" name="g"> Male
+  <input type="radio" name="g"> Female
+</form>`,n:[['Purpose of <input type="radio">','Creates a radio button. It allows selecting only one option out of multiple choices.']]},
+{t:'type="checkbox"',c:`<form>
+  Hobbies:
+  <input type="checkbox"> Coding
+  <input type="checkbox"> Gaming
+</form>`,n:[['Purpose of <input type="checkbox">','Creates a checkbox element. Unlike radio buttons, checkboxes allow users to select more than one option or none at all!']]},
+{t:'type="submit"',c:`<form>
+  Email: <input type="text">
+  <input type="submit" value="Send Data">
+</form>`,n:[['Purpose of <input type="submit">','Displays a submission button. Clicking this button sends all data filled in the form to a processing server. The value="..." attribute sets the button text!']]},
+{t:'type="password"',c:`<form>
+  Password: <input type="password">
+  <input type="submit" value="Login">
+</form>`,n:[['Purpose of <input type="password">','The password input type masks characters as asterisks (*) or bullet discs (•) to protect sensitive text from shoulder surfing!']]},
+{t:'type="reset"',c:`<form>
+  Feedback: <input type="text">
+  <input type="reset" value="Clear Form">
+  <input type="submit">
+</form>`,n:[['Purpose of <input type="reset">','The reset control immediately clears all inputs entered in the form, resetting every control back to its default state.']]},
+{t:'type="button"',c:`<form>
+  <input type="button" value="Click Me!" onclick="alert('button activated')">
+</form>`,n:[['Purpose of <input type="button">','Displays a standalone push button. Unlike submit buttons, a generic button does not submit forms by default; instead, it triggers custom interactive actions on events (like JavaScript clicks)!'],['Note (Hindi)','basically, ye buttons ham apne khud ke purpose ke liye use kar sakte hai.']]},
+{t:'More input types: email, number, date, colour, range',c:`<form>
+  Email: <input type="email" placeholder="you@mail.com" required><br>
+  Age: <input type="number" min="1" max="100"><br>
+  Birthday: <input type="date"><br>
+  Colour: <input type="color"><br>
+  Volume: <input type="range"><br>
+  <input type="submit">
+</form>`,n:[['type="email"','Expects an email address, and phones show a better keyboard.'],['type="number"','Accepts only numbers. {min} and {max} set the limits.'],['date, color, range','Built-in pickers: a calendar, a colour palette and a slider.'],['required','The browser will not submit the form until this field is filled in.']]},
+{t:'label, textarea, select & form',c:`<form action="/save" method="post">
+  <label for="n">Name</label>
+  <input id="n" type="text"><br>
+  <textarea rows="3" placeholder="Your message"></textarea><br>
+  <select>
+    <option>HTML</option>
+    <option>CSS</option>
+  </select>
+  <button type="submit">Send</button>
+</form>`,n:[['<label>','Text tied to an input by matching {for} and {id}. Clicking the label focuses the input.'],['<textarea>','A multi-line text box for longer messages.'],['<select> & <option>','A drop-down list of choices.'],['<form action method>','{action} is the address that receives the data. {method} (get or post) is how it is sent.']]},
+{t:'Final reference table',x:1,h:()=>`<p>Your full reference sheet for every form control in this chapter.</p>`+T(['Type of Control','Purpose'],IN.map(r=>[`<code>${e0(r[0])}</code>`,e0(r[1])]))}]},
+{id:'ch6',t:'id & class Attributes',s:'Labels that let CSS and JavaScript find your tags',q:['How do you select an element by its id in CSS?',['.name','#name','*name','&name'],1],L:[
+{t:'The id attribute',c:`<h1 id="main-header">Welcome</h1>
+<p id="intro-text">
+  This paragraph has a unique identifier.
+</p>
+<button id="submit-btn">Submit</button>`,n:[['Unique Identifier','An id must be completely unique within an HTML page. No two elements can share the same ID name.'],['Case Sensitive','IDs are case-sensitive and must not contain spaces (use hyphens like main-header instead).'],['CSS Selector: #','In CSS, an ID is targeted using the hashtag symbol (e.g., #main-header).']]},
+{t:'The class attribute',c:`<h2 class="card-title">Feature One</h2>
+<p class="card-text highlight">First item content</p>
+<h2 class="card-title">Feature Two</h2>
+<p class="card-text">Second item content</p>`,n:[['Reusable','Unlike id, a class can be shared across multiple elements to apply consistent styles.'],['Multiple Classes','An element can have multiple classes separated by spaces (e.g., class="card-text highlight").'],['CSS Selector: .','In CSS, a class is targeted using a dot prefix (e.g., .card-title).']]},
+{t:'Key differences: id vs class',c:`<!-- One unique ID per page -->
+<div id="navbar" class="bg-dark flex">
+  Navigation Bar
+</div>
+<!-- Reusable classes -->
+<div class="bg-dark card">Card 1</div>`,h:()=>T(['Feature','id Attribute','class Attribute'],[['Uniqueness','Must be unique (1 per page)','Reusable on many elements'],['Count per Element','Only 1 ID name allowed','Multiple classes (space-separated)'],['CSS Syntax','<code>#header</code>','<code>.btn</code>']]),n:[['Best Practice','Use id for unique structural elements (Header, Footer, Navbar) or JavaScript hooks.'],['Styling Rule','Use class for styling repeated components like buttons, cards, and text styles.'],['Note','An element can have both an id and one or more class attributes at the same time!']]},
+{t:'Connecting to CSS (next module)',c:`<style>
+  /* Selecting by ID */
+  #main-header {
+    color: indigo;
+  }
+  /* Selecting by Class */
+  .highlight {
+    background-color: yellow;
+  }
+</style>
+<h1 id="main-header">Welcome</h1>
+<p class="highlight">Try editing the colours!</p>`,n:[['Next Step: CSS Selectors','We will unlock full styling control in CSS! Right now, id and class act as hooks or labels on HTML tags. We will understand their true potential in a much better way once we dive into CSS Selectors & Styling in upcoming sessions.'],['HTML Scope','In HTML, id and class are attributes that assign identifiers or categories to tags.'],['CSS Scope','In CSS, they act as selectors (# and .) to pick exact elements and style them.'],['Coming Soon','We’ll also use these IDs to make web pages dynamic using JavaScript functions!']]},
+{t:'div & span containers',c:`<style>
+  .card { border: 2px solid #7c3aed; padding: 10px; border-radius: 8px; }
+  .hot { color: crimson; font-weight: bold; }
+</style>
+<div class="card" id="box">
+  <h3>Title</h3>
+  <p>Some <span class="hot">important</span> words.</p>
+</div>`,n:[['<div> Block','A container that groups big parts of a page. It starts on a new line.'],['<span> Inline','A container for a few words inside a line of text.'],['Why id & class?','{<div>} and {<span>} have no look of their own. An id or class gives you a hook to style them.']]}]},
+{id:'test',t:'Final Test',s:'Every topic in one test',test:1,L:[]}
+];
+var tm;
+const QB=[
+['What does <!DOCTYPE html> tell the browser?',['This page uses modern HTML5','Start a new heading','Open a link','Hide the page'],0,'It declares the document type and sits on the very first line.',1],
+['Where does everything visible on the page go?',['<head>','<title>','<body>','<meta>'],2,'The {body} holds visible content. The head holds page information.',1],
+['Which heading is the smallest?',['<h1>','<h3>','<h6>','<p>'],2,'Headings shrink from h1 (largest) to h6.',1],
+['What does href stand for?',['Hyper Reference Format','Hypertext Reference','Home Resource Link','High Reference'],1,'It holds the URL the link points to.',1],
+['Which attribute opens a link in a new tab?',['title','href','alt','target="_blank"'],3,'{target="_blank"} opens a new tab or window.',1],
+['Which tag needs NO closing tag?',['<p>','<b>','<hr>','<a>'],2,'{<hr>} is an empty tag, like {<br>} and {<img>}.',2],
+['Which tag marks text as important and helps screen readers?',['<strong>','<hr>','<sub>','<li>'],0,'{<strong>} adds meaning, not just bold looks.',2],
+['Which tag makes a numbered list?',['<ul>','<ol>','<li>','<tr>'],1,'{<ol>} is ordered, {<ul>} is bulleted.',3],
+['What is a nested list?',['A list inside another list','A list with no items','A table with borders','A list of links'],0,'Nested lists show hierarchy, like menus and sitemaps.',3],
+['Which tag makes a table header cell?',['<td>','<tr>','<th>','<table>'],2,'{<th>} is a header cell, {<td>} a data cell, {<tr>} a row.',3],
+['What does rowspan="2" do?',['Merges two columns','Adds two borders','Merges two rows vertically','Makes two tables'],2,'rowspan stretches a cell down across rows. colspan stretches across columns.',3],
+['Which attribute gives an image alternative text?',['src','alt','href','controls'],1,'{alt} helps accessibility and shows if the image fails to load.',4],
+['Which attribute shows play and volume buttons on audio?',['controls','src','alt','width'],0,'Without {controls} the player is invisible.',4],
+['What is an iframe used for?',['Making bold text','Embedding another page, like a map or video','Drawing a line','Creating a list'],1,'It shows another page inside yours.',4],
+['What makes radio buttons act as one group?',['The same name attribute','The same value','Different ids','A closing tag'],0,'Radios that share a {name} allow only one choice.',5],
+['Which input lets users pick more than one option?',['radio','checkbox','password','reset'],1,'Checkboxes allow none, one or many.',5],
+['What does type="reset" do?',['Sends the form','Hides the form','Clears the form to its defaults','Opens a link'],2,'It resets every control to its starting state.',5],
+['What does a <label> do?',['Draws a border','Names an input and focuses it when clicked','Submits the form','Makes text bold'],1,'The label {for} must match the input {id}.',5],
+['Which id rule is correct?',['Many elements can share an id','An id must be unique on the page','Ids can contain spaces','Ids are not case-sensitive'],1,'One id per page. Use classes for repeated styling.',6],
+['How do you select a class in CSS?',['#name','.name','*name','@name'],1,'Class uses a dot, id uses a hash.',6]
+];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const fm=s=>e0(s).replace(/\{(.+?)\}/g,'<code>$1</code>');
+let done={};try{done=JSON.parse(localStorage.getItem('hb')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('hb',JSON.stringify(done))}catch(e){}};
+const IMG='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350"><rect width="600" height="350" fill="#9db7ff"/><circle cx="450" cy="100" r="40" fill="#ffe066"/><path d="M0 350V240l140-90 120 80 130-110 210 130v100z" fill="#2f5bea"/></svg>');
+const SC='<script>addEventListener("submit",function(e){e.preventDefault();var d=document.createElement("p");d.textContent="Form submitted (demo only, nothing is sent).";d.style.cssText="background:#d1fae5;padding:6px 10px;border-radius:6px";document.body.appendChild(d)});<\/script>';
+const pv=c=>'<style>body{font:15px/1.5 system-ui,sans-serif;margin:14px;color:#10233b}img{max-width:100%}td,th{padding:4px 10px}.ph{background:#10233b;color:#fff;padding:60px 14px;text-align:center;border-radius:8px}</style>'+c.replace(/<iframe[\s\S]*?<\/iframe>/gi,'<div class="ph">Video player. It loads from YouTube once this code runs on your own site.</div>').replace(/https:\/\/picsum\.photos\/\d+\/\d+/g,IMG)+SC;
+const nav=()=>{const h=location.hash.slice(1)||'home';$('#nav').innerHTML=`<a href="#home" class="${h=='home'?'on':''}"><span class="n">★</span>Contents</a>`+D.map((c,i)=>`<a href="#${c.id}" class="${h==c.id?'on':''}"><span class="n">${i+1}</span>${e0(c.t)}${done[c.id]?'<span class="ck" aria-label="done">✓</span>':''}</a>`).join('')};
+function home(){const tot=D.reduce((a,c)=>a+c.L.length,0),dn=D.filter(c=>done[c.id]).length,nx=D.find(c=>!done[c.id])||D[0];
+$('#main').innerHTML=`<h1>Learn HTML <span class="gt">by doing</span>.</h1><p class="mono tyl"><span id="ty"></span><i class="cur"></i></p><p class="lead">${D.length} chapters, ${tot} short lessons. Every code sample is editable, so change it and watch the result appear next to it.</p>
+<div class="bar2" role="progressbar" aria-valuenow="${dn}" aria-valuemax="${D.length}"><i style="width:${dn/D.length*100}%"></i></div><p style="margin:0 0 16px;color:var(--mut)">${dn} of ${D.length} chapters finished</p>
+<a class="cta" href="#${nx.id}">${dn?'Continue with chapter '+(D.indexOf(nx)+1):'Start chapter 1'}</a>
+<input class="srch" id="sq" type="search" placeholder="Search a tag, e.g. colspan" aria-label="Search lessons"><ol class="toc" id="toc"></ol>`;
+const draw=q=>{q=q.toLowerCase();const r=D.map((c,i)=>[c,i]).filter(([c])=>!q||JSON.stringify(c).toLowerCase().includes(q));$('#toc').innerHTML=r.length?r.map(([c,i])=>`<li><a href="#${c.id}"><span class="big">${i+1}</span><span><strong>${e0(c.t)}</strong><small>${e0(c.s)}. ${c.test?QB.length+' questions':c.L.length+' lessons'}</small></span>${done[c.id]?'<span class="ck">Done ✓</span>':''}</a></li>`).join(''):'<li>No chapter matches that. Try a tag name like <code>table</code> or a word like “image”.</li>'};
+draw('');$('#sq').oninput=e=>draw(e.target.value);
+const W=['<h1>Hello</h1>','<a href="#">Link</a>','<table border="1">','<input type="radio">','<img src="cat.jpg" alt="cat">','<ul><li>Item</li></ul>'],ty=$('#ty');let wi=0,ci=0,dl=1;
+if(matchMedia('(prefers-reduced-motion:reduce)').matches)ty.textContent=W[0];else tm=setInterval(()=>{const w=W[wi];ci+=dl;ty.textContent=w.slice(0,ci);if(dl>0&&ci>=w.length+8)dl=-1;if(dl<0&&ci<=0){dl=1;wi=(wi+1)%W.length}},90)}
+function tst(c){const p=D[D.indexOf(c)-1],a={};let sub=0;
+$('#main').innerHTML=`<p style="color:var(--mut);margin:0">Chapter ${D.length} of ${D.length}</p><h1>Final <span class="gt">test</span></h1><p class="lead">${QB.length} questions covering every chapter. Pick one answer for each, then submit to see your score and why each answer is right.</p><div class="bar2"><i id="tp" style="width:0"></i></div><p id="tc" style="margin:0 0 16px;color:var(--mut)">0 of ${QB.length} answered</p>`+QB.map((x,k)=>`<div class="quiz" id="q${k}"><h2>${k+1}. ${e0(x[0])}</h2>${x[1].map((o,j)=>`<button class="opt" data-q="${k}" data-k="${j}">${e0(o)}</button>`).join('')}<p class="ex" style="margin:8px 0 0"></p></div>`).join('')+`<button class="cta" id="sb">Submit test</button><p id="sm" aria-live="polite"></p><div id="rs"></div><div class="pn"><a href="#${p.id}">Previous: ${e0(p.t)}</a><a href="#home">Back to contents</a></div>`;
+$$('.opt').forEach(b=>b.onclick=()=>{if(sub)return;const k=+b.dataset.q;a[k]=+b.dataset.k;$$('#q'+k+' .opt').forEach(o=>o.classList.toggle('sel',o===b));const n=Object.keys(a).length;$('#tc').textContent=n+' of '+QB.length+' answered';$('#tp').style.width=n/QB.length*100+'%'});
+$('#sb').onclick=()=>{if(sub)return;const m=QB.findIndex((x,k)=>!(k in a));if(m>=0){$('#sm').textContent='Question '+(m+1)+' is still unanswered.';$('#q'+m).scrollIntoView({behavior:'smooth',block:'center'});return}
+sub=1;$('#sm').textContent='';let s=0;QB.forEach((x,k)=>{const ok=a[k]==x[2];s+=ok;$$('#q'+k+' .opt').forEach((o,j)=>{o.classList.remove('sel');if(j==x[2])o.classList.add('ok');else if(j==a[k])o.classList.add('no')});$('#q'+k+' .ex').innerHTML=(ok?'Correct. ':'Not quite. ')+fm(x[3])+` <small>(Chapter ${x[4]})</small>`});
+const pc=Math.round(s/QB.length*100);$('#rs').innerHTML=`<div class="res"><b>${s} / ${QB.length}</b>${pc>=70?'Great work, you passed!':'Good try. Review the chapters you missed and retake the test.'}<br><button class="cta" id="rt" style="margin-top:12px">Retake test</button></div>`;
+$('#rt').onclick=()=>tst(c);$('#rs').scrollIntoView({behavior:'smooth'});$('#sb').style.display='none';if(pc>=70){done[c.id]=true;save();nav();boom()}}}
+function boom(){for(let i=0;i<48;i++){const d=document.createElement('i');d.className='cf';d.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 90% 60%);animation-delay:${Math.random()*.6}s`;document.body.appendChild(d);setTimeout(()=>d.remove(),3000)}}
+function chap(c){if(c.test)return tst(c);const i=D.indexOf(c),p=D[i-1],n=D[i+1];
+$('#main').innerHTML=`<p style="color:var(--mut);margin:0">Chapter ${i+1} of ${D.length}</p><h1>${e0(c.t)}</h1><p class="lead">${e0(c.s)}.</p>`+c.L.map((l,j)=>`<section class="lesson" id="l${j+1}"><h2>${i+1}.${j+1} ${e0(l.t)}</h2>`+(l.x?l.h():`<div class="pg"><div class="ed"><div class="bh"><span>Editor: change the code</span><button data-cp>Copy</button><button data-rs>Reset</button></div><textarea spellcheck="false" aria-label="Code editor">${e0(l.c)}</textarea></div><div class="out"><div class="bh"><span>Output</span></div><iframe sandbox="allow-scripts allow-modals allow-popups" title="Live output"></iframe></div></div>`+(l.h?`<div style="margin-top:16px">${l.h()}</div>`:'')+`<div class="notes">${l.n.map(([b,t])=>`<div class="note"><h3>${e0(b)}</h3><p>${fm(t)}</p></div>`).join('')}</div>`)+`</section>`).join('')+
+`<div class="quiz"><h2>Quick check: ${e0(c.q[0])}</h2>${c.q[1].map((o,k)=>`<button class="opt" data-k="${k}">${e0(o)}</button>`).join('')}<p id="qm" aria-live="polite" style="margin:8px 0 0"></p></div>
+<div class="pn">${p?`<a href="#${p.id}">Previous: ${e0(p.t)}</a>`:'<a href="#home">Contents</a>'}<button id="dn" class="${done[c.id]?'done':''}">${done[c.id]?'Finished ✓':'Mark chapter as finished'}</button>${n?`<a href="#${n.id}">Next: ${e0(n.t)}</a>`:'<a href="#home">Back to contents</a>'}</div>`;
+$$('.lesson').forEach((s,j)=>{const ta=s.querySelector('textarea');if(!ta)return;const f=s.querySelector('iframe'),u=()=>f.srcdoc=pv(ta.value);ta.oninput=u;u();
+s.querySelector('[data-rs]').onclick=()=>{ta.value=c.L[j].c;u()};
+s.querySelector('[data-cp]').onclick=e=>{try{navigator.clipboard.writeText(ta.value);e.target.textContent='Copied'}catch(x){ta.select();e.target.textContent='Selected'}setTimeout(()=>e.target.textContent='Copy',1500)};
+ta.onkeydown=e=>{if(e.key=='Tab'&&!e.shiftKey){e.preventDefault();document.execCommand('insertText',false,'  ')}}});
+$$('[data-go]').forEach(b=>b.onclick=()=>$('#l'+b.dataset.go).scrollIntoView({behavior:'smooth'}));
+$$('.opt').forEach(b=>b.onclick=()=>{const ok=+b.dataset.k==c.q[2];b.classList.add(ok?'ok':'no');$('#qm').textContent=ok?'Correct! You can mark this chapter finished.':'Not quite. Re-read the notes above and try another answer.'});
+$('#dn').onclick=()=>{done[c.id]=!done[c.id];save();nav();chap(c)}}
+function go(){clearInterval(tm);const h=location.hash.slice(1)||'home',c=D.find(x=>x.id==h);c?chap(c):home();nav();scrollTo(0,0);document.title=(c?c.t+' | ':'')+'HTML Basics: a hands-on guide'}
+addEventListener('hashchange',go);go();
+addEventListener('scroll',()=>{const h=document.documentElement;$('#sp').style.width=(scrollY/Math.max(1,h.scrollHeight-innerHeight)*100)+'%'});
+addEventListener('pointermove',e=>{const t=e.target.closest&&e.target.closest('.toc a,.lesson');if(t){const r=t.getBoundingClientRect();t.style.setProperty('--mx',e.clientX-r.left+'px');t.style.setProperty('--my',e.clientY-r.top+'px')}});
+</script>
+</body>
+</html>
